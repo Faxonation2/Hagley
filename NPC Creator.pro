@@ -54,9 +54,6 @@ SOURCES += \
 
 HEADERS  += \
     SpreadThread.h \
-    Ztest6.h \
-    Ztest7.h \
-    Ztest8.h \
     mainwindow.h \
     charcreate.h \
     combat.h \
@@ -90,13 +87,7 @@ HEADERS  += \
     patchthread.h \
     serverselect.h \
     serverselectthread.h \
-    worldthread.h \
-    Ztest0.h \
-    Ztest1.h \
-    Ztest2.h \
-    Ztest3.h \
-    Ztest4.h \
-    Ztest5.h
+    worldthread.h
 
 FORMS    += mainwindow.ui
 
