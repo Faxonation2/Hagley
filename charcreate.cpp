@@ -7,6 +7,7 @@
 #include "login.h"
 #include "opcodes.h"
 #include "checkthezone.h"
+#include "objectpacket.h"
 
 CharCreate::CharCreate(QObject *parent) : QObject(parent)
 {
@@ -934,6 +935,13 @@ QByteArray CharCreate::CharacterCreation(QByteArray ClientID, QByteArray Clients
     QString StartingZ = StartingXZYF.mid(6,6);
     QString StartingY = StartingXZYF.mid(12,6);
     QString StartingF = StartingXZYF.mid(18,2);
+
+
+
+    objectpacket::holdid1.append(IN_CharacterCreation.CharSelectID);
+    objectpacket::holdx.append(StartingX);
+    objectpacket::holdz.append(StartingZ);
+    objectpacket::holdy.append(StartingY);
 
     QString StartingStats = StartingStatsMap.value(StartingLoaction);
 
@@ -2857,6 +2865,9 @@ QByteArray CharCreate::CharacterCreation(QByteArray ClientID, QByteArray Clients
 
     qDebug() << "rowline.size()" << rowline.size();
     qDebug() << "rowline" << rowline;
+
+    objectpacket::Master_Map.insert(IN_CharacterCreation.CharSelectID.toUtf8(),rowline);
+
     return rowline;
 
 }

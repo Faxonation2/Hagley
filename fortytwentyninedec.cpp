@@ -307,6 +307,9 @@ QByteArray fortytwentyninedec::fortydec_res(QByteArray ClientID, QByteArray Clie
 
                 IN_4029s.LoginStarted = "";
 
+                qDebug() << "";
+                qDebug() << "IN_4029s.CharSelectID" << IN_4029s.CharSelectID;
+
                 QString mainid = IN_4029s.CharSelectID;
                 generator packet;
                 QByteArray holder271 = packet.maintoonswitch(mainid,"1F",IN_4029s.CharSelectID_Main); //send the id we want to get a 00c9
@@ -314,50 +317,51 @@ QByteArray fortytwentyninedec::fortydec_res(QByteArray ClientID, QByteArray Clie
 
 
 
-
-                if(db.isOpen())
+                if(IN_4029s.packetid != 0)
                 {
-                    db.close();
-                    db.removeDatabase(QSqlDatabase::defaultConnection);
-                }
 
-                db = QSqlDatabase::addDatabase("QSQLITE");
-                db.setDatabaseName(Opcodes::m_FileName);
-                db.open();
-
-                db.transaction();
-
-
-                QString TableName = "STATS42EC";
-
-                QSqlQuery query;
-                QSqlRecord record;
-                query.prepare(QString ("SELECT * FROM STATS42EC WHERE ROWID = %1").arg(IN_4029s.packetid));
-                query.exec();
-
-                record = query.record();
-
-                qDebug() << "IN_4029s.packetid" << IN_4029s.packetid;
-                
-                QByteArray TestStatsChange = "";
-                while(query.next())
-                {
-                    for(int rr = 3; rr < record.count(); rr++)
+                    if(db.isOpen())
                     {
-                        IN_4029s.StatsChange.append(query.value(rr).toString().toUtf8());
-
-                        TestStatsChange.append(query.value(rr).toString().toUtf8());
-
+                        db.close();
+                        db.removeDatabase(QSqlDatabase::defaultConnection);
                     }
+
+                    db = QSqlDatabase::addDatabase("QSQLITE");
+                    db.setDatabaseName(Opcodes::m_FileName);
+                    db.open();
+
+                    db.transaction();
+
+
+                    QString TableName = "STATS42EC";
+
+                    QSqlQuery query;
+                    QSqlRecord record;
+                    query.prepare(QString ("SELECT * FROM STATS42EC WHERE ROWID = %1").arg(IN_4029s.packetid));
+                    query.exec();
+
+                    record = query.record();
+
+                    qDebug() << "IN_4029s.packetid" << IN_4029s.packetid;
+
+                    QByteArray TestStatsChange = "";
+
+                    while(query.next())
+                    {
+                        for(int rr = 3; rr < record.count(); rr++)
+                        {
+                            IN_4029s.StatsChange.append(query.value(rr).toString().toUtf8());
+
+                            TestStatsChange.append(query.value(rr).toString().toUtf8());
+
+                        }
+                    }
+
+                    qDebug() << "IN_4029s.StatsChange.size()1" << IN_4029s.StatsChange.size();
+                    qDebug() << "IN_4029s.StatsChange" << IN_4029s.StatsChange;
+
+                    db.commit();
                 }
-
-                qDebug() << "IN_4029s.StatsChange.size()1" << IN_4029s.StatsChange.size();
-
-                db.commit();
-
-//                db.close();
-//                db.removeDatabase(QSqlDatabase::defaultConnection);
-
 
                 qDebug() << "got here 1";
 
@@ -1601,7 +1605,7 @@ QByteArray fortytwentyninedec::fortydec_res(QByteArray ClientID, QByteArray Clie
     }
 
 
-qDebug() << "IN_4029s.fortyexist3" << IN_4029s.fortyexist;
+    qDebug() << "IN_4029s.fortyexist3" << IN_4029s.fortyexist;
 
 
     return "4029_Return";
