@@ -397,6 +397,12 @@ void Opcodes::RemoveFromGame(QByteArray ClientID, QByteArray ClientsIP, QByteArr
 
                 QVector<QByteArray> TempVectOut = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
 
+                if(TempVectOut.isEmpty() == true)
+                {
+                    SendToID = Opcodes::ObjectIDsMap.key(SendToID);
+                    TempVectOut = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+                }
+
                 if(TempVectOut.isEmpty() == false)
                 {
                     ClientID_out = TempVectOut.at(0);
@@ -597,6 +603,12 @@ void Opcodes::RemoveFromGame(QByteArray ClientID, QByteArray ClientsIP, QByteArr
             if(SendToID != IN_Opcodes.CharSelectID)
             {
                 QVector<QByteArray> TempVect = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+
+                if(TempVect.isEmpty() == true)
+                {
+                    SendToID = Opcodes::ObjectIDsMap.key(SendToID);
+                    TempVect = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+                }
 
                 QByteArray ClientID_out = TempVect.at(0);
                 QByteArray ClientIP_out = TempVect.at(1);
@@ -967,6 +979,15 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
             holder172.replace(38,4,Clients_Last_FB_MessageNumber);
 
             QVector <QByteArray> MessNumbVect = CharID_ServerMessageNumbers.value(IN_Opcodes.CharSelectID);
+
+            if(MessNumbVect.isEmpty() == true)
+            {
+                MessNumbVect.append("0000");
+                MessNumbVect.append("0000");
+                MessNumbVect.append("0000");
+                MessNumbVect.append("0000");
+            }
+
             QByteArray Servers_Last_MessageNumber = MessNumbVect.at(0);
 
             increment GrpOut;
@@ -7094,6 +7115,12 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
             {
                 QVector<QByteArray> TempVect2 = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
 
+                if(TempVect2.isEmpty() == true)
+                {
+                    SendToID = Opcodes::ObjectIDsMap.key(SendToID);
+                    TempVect2 = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+                }
+
                 QByteArray ClientID_out = TempVect2.at(0);
                 QByteArray ClientIP_out = TempVect2.at(1);
                 QByteArray ClientPort_out = TempVect2.at(2);
@@ -7311,6 +7338,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                 QString ThisClientsCharSelectID = IN_Opcodes.CharSelectID;
 
 
+                //fix group id when disbanding for disconnect.
                 QVector<QString> TempGrpVect = CharCreate::GroupID_PlayersID_NamesVectorMap.value(IN_Opcodes.GroupID);
 
                 int index = TempGrpVect.indexOf(IN_Opcodes.CharSelectID);
@@ -7572,6 +7600,12 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                 packetparsing::packetvars pSwitch;
 
                 QVector<QByteArray> TempVectOut = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+
+                if(TempVectOut.isEmpty() == true)
+                {
+                    SendToID = Opcodes::ObjectIDsMap.key(SendToID);
+                    TempVectOut = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+                }
 
                 if(TempVectOut.isEmpty() == false)
                 {
@@ -9550,6 +9584,12 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
 
                     QVector<QByteArray> TempVect = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+
+                    if(TempVect.isEmpty() == true)
+                    {
+                        SendToID = Opcodes::ObjectIDsMap.key(SendToID);
+                        TempVect = CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.value(SendToID);
+                    }
 
                     QByteArray ClientID_out = TempVect.at(0);
                     QByteArray ClientIP_out = TempVect.at(1);
