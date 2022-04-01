@@ -89,8 +89,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lineEdit_234->setText("108.184.198.155");
 
     //Alutra // GuitarHero
-//        ui->lineEdit->setText("192.168.001.112");
-//        ui->lineEdit_234->setText("192.168.001.112");
+    //        ui->lineEdit->setText("192.168.001.112");
+    //        ui->lineEdit_234->setText("192.168.001.112");
 
     //engle2010
     //    ui->lineEdit->setText("192.168.158.81");
@@ -119,7 +119,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
-    Opcodes::GroupID = "9D030C00";
+
 
     //    ui->pushButton_141->setDisabled(true);
     //    ui->pushButton_142->setDisabled(true);
@@ -295,15 +295,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
         QSqlRecord record = queryQr.record();
 
-//        qDebug() << "";
+        //        qDebug() << "";
 
         while(queryQr.next())
         {
             QGiversName = queryQr.value(1).toString();
             QGiversID = queryQr.value(2).toString();
 
-//            qDebug() << "QGiversName" << QGiversName;
-//            qDebug() << "QGiversID" << QGiversID;
+            //            qDebug() << "QGiversName" << QGiversName;
+            //            qDebug() << "QGiversID" << QGiversID;
 
             QMap<int,QString> Flag_MenusID_Map;
 
@@ -316,11 +316,11 @@ MainWindow::MainWindow(QWidget *parent) :
                     int index = Result.indexOf("#");
                     int Flag = Result.midRef(0,index).toInt(nullptr,10);
 
-//                    qDebug() << "Flag_X" << Flag;
+                    //                    qDebug() << "Flag_X" << Flag;
 
                     QString MenusID = Result.mid(index+1,-1);
 
-//                    qDebug() << "MenusID_X" << MenusID;
+                    //                    qDebug() << "MenusID_X" << MenusID;
 
                     Flag_MenusID_Map.insert(Flag,MenusID);
                 }
@@ -450,7 +450,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
                 if(val.isEmpty() == false)
                 {
-//                    qDebug() << "val" << val;
+                    //                    qDebug() << "val" << val;
                     TempVaLvect.append(val);
                 }
                 else
@@ -505,9 +505,9 @@ MainWindow::MainWindow(QWidget *parent) :
         Quests::QuestGiversID_Level_LocationClassRaceMap.insert(NPCsID,tempMap);
     }
 
-//    qDebug() << "";
+    //    qDebug() << "";
 
-//---------------------------------------------------------------
+    //---------------------------------------------------------------
 
     QSqlQuery queryt ("SELECT COUNT (*) FROM QUEST_TEXT");
 
@@ -565,7 +565,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     QSqlQuery queryQM ("SELECT COUNT (*) FROM QUEST_MENUS");
 
@@ -596,8 +596,8 @@ MainWindow::MainWindow(QWidget *parent) :
             tempOptionIDVect.append(queryQM.value(2).toString());
             MenusText = queryQM.value(2).toString();
 
-//            qDebug() << "";
-//            qDebug() << "MenusID" << MenusID;
+            //            qDebug() << "";
+            //            qDebug() << "MenusID" << MenusID;
 
             for(int fd = 3; fd < record.count(); fd+=2)
             {
@@ -693,10 +693,10 @@ MainWindow::MainWindow(QWidget *parent) :
             OptionsID = queryMO.value(2).toString();
             OptionsText = queryMO.value(3).toString();
 
-//            qDebug() << "";
-//            qDebug() << "MenusID" << MenusID;
-//            qDebug() << "OptionsID" << OptionsID;
-//            qDebug() << "OptionsText" << OptionsText;
+            //            qDebug() << "";
+            //            qDebug() << "MenusID" << MenusID;
+            //            qDebug() << "OptionsID" << OptionsID;
+            //            qDebug() << "OptionsText" << OptionsText;
 
             for(int fd = 4; fd < record.count(); fd++)
             {
@@ -704,7 +704,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
                 if(Results.isEmpty() == false)
                 {
-//                    qDebug() << "Result_#" << fd-3 << "=" << Results;
+                    //                    qDebug() << "Result_#" << fd-3 << "=" << Results;
                     tempOptionIDVect.append(Results);
                 }
                 else
@@ -714,25 +714,25 @@ MainWindow::MainWindow(QWidget *parent) :
             }
         }
 
-//        qDebug() << "tempOptionIDVect" << tempOptionIDVect;
+        //        qDebug() << "tempOptionIDVect" << tempOptionIDVect;
 
         if(Quests::MenuID_OptionsIDs_ResultsVectorMap.contains(MenusID))
         {
             tempVectorMap = Quests::MenuID_OptionsIDs_ResultsVectorMap.value(MenusID);
         }
 
-//        qDebug() << "tempVectorMap1" << tempVectorMap;
+        //        qDebug() << "tempVectorMap1" << tempVectorMap;
 
         tempVectorMap.insert(OptionsID,tempOptionIDVect);
 
-//        qDebug() << "tempVectorMap2" << tempVectorMap;
+        //        qDebug() << "tempVectorMap2" << tempVectorMap;
 
         Quests::MenuID_OptionsIDs_ResultsVectorMap.insert(MenusID,tempVectorMap);
 
         Quests::OptionID_OptionText_Map.insert(OptionsID,OptionsText);
     }
 
-//    qDebug() << "Quests::MenuID_OptionsIDs_ResultsVectorMap" << Quests::MenuID_OptionsIDs_ResultsVectorMap;
+    //    qDebug() << "Quests::MenuID_OptionsIDs_ResultsVectorMap" << Quests::MenuID_OptionsIDs_ResultsVectorMap;
 
     Quests::Menu_Option_ID = OptionsID;
 
@@ -781,7 +781,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QString PopUpID = "";
 
-//    qDebug() << "";
+    //    qDebug() << "";
 
     for(int it = 1; it < Quests::PacketID_Popup; it++)
     {
@@ -870,7 +870,7 @@ MainWindow::MainWindow(QWidget *parent) :
                 }
             }
 
-//            qDebug() << "";
+            //            qDebug() << "";
         }
 
         Quests::PopUpID_PopUpResltsVectorMap.insert(PopUpID,tempPopUpResultVect);
@@ -1126,10 +1126,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
         Quests::NPCsName_ZoneMap.insert(NewName,ZonesName);
 
-//        qDebug() << NewName << ZonesName;
+        //        qDebug() << NewName << ZonesName;
     }
 
-//    qDebug() << "Finished with ZoneNames";
+    //    qDebug() << "Finished with ZoneNames";
 
 
     db.commit();
@@ -1328,11 +1328,11 @@ void MainWindow::on_pushButton_clicked() //set up ip
         ui->lineEdit->setText("192.168.000.112");
     }
 
-    if(ui->checkBox_61->isChecked() == true)
-    {
-        ui->lineEdit->setText("139.162.238.221");
-        ui->lineEdit_234->setText("139.162.238.221");
-    }
+    //    if(ui->checkBox_61->isChecked() == true)
+    //    {
+    //        ui->lineEdit->setText("139.162.238.221");
+    //        ui->lineEdit_234->setText("139.162.238.221");
+    //    }
 
     ui->pushButton->setDisabled(true);
     ui->pushButton_2->setDisabled(false);
@@ -15688,14 +15688,14 @@ void MainWindow::on_StandingStill()
 
 void MainWindow::UpdateChannelMaps(QByteArray ClientID, QByteArray ClientsIP, QByteArray ClientsPort)
 {
-    qDebug() << "inside UpdateChannelMaps ";
+    qDebug() << "Inside_UpdateChannelMaps ";
 
     packetparsing::packetvars IN_MainWindow;
     IN_MainWindow = packetparsing::IPandPort_AllvariablesMap.value(ClientID + ClientsIP + ClientsPort);
 
-    qDebug() << "ClientID " << ClientID;
-    qDebug() << "ClientsIP " << ClientsIP;
-    qDebug() << "ClientsPort " << ClientsPort;
+    qDebug() << "UpdateChannelMaps.ClientID " << ClientID;
+    qDebug() << "UpdateChannelMaps.ClientsIP " << ClientsIP;
+    qDebug() << "UpdateChannelMaps.ClientsPort " << ClientsPort;
 
     QByteArray hex3 = IN_MainWindow.masterz;
 
@@ -15849,51 +15849,164 @@ void MainWindow::UpdateChannelMaps(QByteArray ClientID, QByteArray ClientsIP, QB
         QByteArray ID_IP_PORT = StructIter.key();
         IN_MainWindow_Switch = StructIter.value();//all other players structs
 
-        if(IN_MainWindow_Switch.CharSelectID.isEmpty() == false && IN_MainWindow_Switch.flipped == true && IN_MainWindow_Switch.CharSelectID != IN_MainWindow.CharSelectID)
+        if(IN_MainWindow_Switch.CharSelectID.isEmpty() == false && IN_MainWindow_Switch.flipped == true)
         {
-            if(IN_MainWindow_Switch.holdid2.contains(IN_MainWindow.CharSelectID))
+            if(IN_MainWindow_Switch.CharSelectID != IN_MainWindow.CharSelectID)
             {
-                int index = IN_MainWindow_Switch.holdid2.indexOf(IN_MainWindow.CharSelectID);
-
-                IN_MainWindow_Switch.holdx2.replace(index,IN_MainWindow.masterx);
-                IN_MainWindow_Switch.holdz2.replace(index,IN_MainWindow.masterz);
-                IN_MainWindow_Switch.holdy2.replace(index,IN_MainWindow.mastery);
-            }
-
-            if(!IN_MainWindow_Switch.holdid2.contains(IN_MainWindow.CharSelectID) && IN_MainWindow_Switch.CharSelectID != IN_MainWindow.CharSelectID)
-            {
-                IN_MainWindow_Switch.holdid2.append(IN_MainWindow.CharSelectID);
-                IN_MainWindow_Switch.holdx2.append(IN_MainWindow.masterx);
-                IN_MainWindow_Switch.holdz2.append(IN_MainWindow.masterz);
-                IN_MainWindow_Switch.holdy2.append(IN_MainWindow.mastery);
-            }
-
-            QString Channel = IN_MainWindow_Switch.Map_Channel_ID.key(IN_MainWindow.CharSelectID);
-
-            if(Channel.isEmpty() == false)
-            {
-                if(IN_MainWindow_Switch.Map_Channel_ID.contains(Channel))//check if i am in their spawned channels.
+                if(IN_MainWindow_Switch.holdid2.contains(IN_MainWindow.CharSelectID))
                 {
-                    if(IN_MainWindow.Xor_Object_ID2 != IN_MainWindow.Xor_Object_ID)
+                    int index = IN_MainWindow_Switch.holdid2.indexOf(IN_MainWindow.CharSelectID);
+
+                    IN_MainWindow_Switch.holdx2.replace(index,IN_MainWindow.masterx);
+                    IN_MainWindow_Switch.holdz2.replace(index,IN_MainWindow.masterz);
+                    IN_MainWindow_Switch.holdy2.replace(index,IN_MainWindow.mastery);
+                }
+
+                if(!IN_MainWindow_Switch.holdid2.contains(IN_MainWindow.CharSelectID))
+                {
+                    IN_MainWindow_Switch.holdid2.append(IN_MainWindow.CharSelectID);
+                    IN_MainWindow_Switch.holdx2.append(IN_MainWindow.masterx);
+                    IN_MainWindow_Switch.holdz2.append(IN_MainWindow.masterz);
+                    IN_MainWindow_Switch.holdy2.append(IN_MainWindow.mastery);
+                }
+
+                QString Channel = IN_MainWindow_Switch.Map_Channel_ID.key(IN_MainWindow.CharSelectID);
+
+                qDebug() << "IN_MainWindow_Switch.Channel" << Channel;
+
+                if(Channel.isEmpty() == false)
+                {
+                    if(IN_MainWindow_Switch.Map_Channel_ID.contains(Channel))//check if i am in their spawned channels.
                     {
-                        xorpacket packet2;
-                        QByteArray Recompressed2 = packet2.packetencrypt(CurrentC9);
+                        if(IN_MainWindow.Xor_Object_ID2 != IN_MainWindow.Xor_Object_ID)
+                        {
+                            xorpacket packet2;
+                            QByteArray Recompressed2 = packet2.packetencrypt(CurrentC9);
 
-                        QByteArray Combined1 = Channel.toUtf8() + "c9xxxx00" + Recompressed2;
+                            QByteArray Combined1 = Channel.toUtf8() + "c9xxxx00" + Recompressed2;
 
-                        //file.write("Updating Channel = " + Channel.toUtf8());
-                        //file.write("\n");
+                            qDebug() << "IN_MainWindow_Switch.CurrentC9" << CurrentC9;
 
-                        fortytwentyninedec::UpdateMapsVector.append(IN_MainWindow_Switch.CharSelectID.toUtf8());
-                        fortytwentyninedec::UpdateMapsVector.append(Combined1);
+                            QVector<QByteArray> TempVect = Opcodes::CharID_CLientID_IP_PORT_Map.value(IN_MainWindow_Switch.CharSelectID);
+
+
+                            QByteArray ClientsID = "";
+                            QByteArray ClientsIP = "";
+                            QByteArray ClientsPort = "";
+
+                            if(TempVect.isEmpty() == false)
+                            {
+                                ClientsID = TempVect.at(0);
+                                ClientsIP = TempVect.at(1);
+                                ClientsPort = TempVect.at(2);
+
+                                QByteArray Holder = "0A1Fxxxx87C001BF543213" + IN_MainWindow_Switch.SessionID + "00xxxx";
+
+                                Holder.replace(0,4,IN_MainWindow_Switch.serverid1);
+                                Holder.replace(4,4,IN_MainWindow_Switch.clientid1);
+
+                                QVector <QByteArray> MessNumbVect = Opcodes::CharID_ServerMessageNumbers.value(IN_MainWindow_Switch.CharSelectID);
+                                QByteArray Servers_Last_MessageNumber = MessNumbVect.at(0);
+
+                                increment GrpOut;
+                                QByteArray GrpOut_a = GrpOut.count(Servers_Last_MessageNumber);
+                                Holder.replace(30,4,GrpOut_a);
+                                Servers_Last_MessageNumber = GrpOut_a.toUpper();
+
+                                MessNumbVect.replace(0,Servers_Last_MessageNumber);
+
+                                Opcodes::CharID_ServerMessageNumbers.insert(IN_MainWindow_Switch.CharSelectID,MessNumbVect);
+
+                                QByteArray ChanCount = IN_MainWindow_Switch.incrementmap.value(Channel.toUpper());
+
+                                qDebug() << "IN_MainWindow_Switch.Current_Channel = " << Channel.toUpper();
+                                qDebug() << "IN_MainWindow_Switch.ChanCount = " << ChanCount.toUpper();
+
+                                increment otherChannels;
+                                QByteArray ChansNewCount = otherChannels.count(ChanCount);
+                                Combined1.replace(4,4,ChansNewCount);
+
+                                IN_MainWindow_Switch.incrementmap.insert(Channel,ChansNewCount);
+
+                                Holder.append(Combined1);
+
+                                int index = IN_MainWindow_Switch.SortChanelsNumbersVector.indexOf(Channel.toUtf8());
+                                IN_MainWindow_Switch.SortChanelsValuesVector.replace(index,ChansNewCount);
+
+                                IN_MainWindow_Switch.ServersCheckChannelConfirm.clear();
+
+                                for(int re = 0; re < IN_MainWindow_Switch.SortChanelsValuesVector.size(); re++)
+                                {
+                                    QByteArray ChannelsValue = IN_MainWindow_Switch.SortChanelsValuesVector.at(re);
+                                    QByteArray Channel = IN_MainWindow_Switch.SortChanelsNumbersVector.at(re);
+
+                                    if(ChannelsValue != "0000")
+                                    {
+                                        IN_MainWindow_Switch.ServersCheckChannelConfirm.append(Channel + ChannelsValue);
+                                        IN_MainWindow_Switch.SortChanelsValuesVector.replace(re,"0000");
+                                    }
+                                }
+
+                                packetsize ResizePacket;
+                                QByteArray ResizePacket2 = ResizePacket.switchsize(Holder);
+                                Holder.replace(8,4,ResizePacket2.toUpper());
+
+                                crc sendcrc;
+                                QByteArray outcrc =  sendcrc.elcrc(Holder);
+                                Holder.append(outcrc);
+
+                                QHostAddress current_client_address;
+                                current_client_address.setAddress(QString::fromUtf8(IN_MainWindow_Switch.ClientsIP));
+                                quint16 current_client_port = IN_MainWindow_Switch.ClientsPort.toUShort(nullptr,10);
+                                QString changeIP = current_client_address.toString();
+
+
+                                QString MainToon = checkthezone::NPCsNames.value(IN_MainWindow_Switch.CharSelectID);
+
+
+                                QDateTime dateTime = dateTime.currentDateTime();
+                                QString dateTimeString = dateTime.toString("MM-dd-yy hh:mm:ss.zz:a");
+
+                                qDebug() << "";
+                                qDebug() << "";
+                                qDebug() << "----------------------------------------------------------";
+                                qDebug() << dateTimeString;
+                                qDebug() << "Update_Channel_Maps: ";
+                                qDebug() << "To Client: " + MainToon;
+                                qDebug() << "IN_MainWindow_Switch.CharSelectID = " << IN_MainWindow_Switch.CharSelectID;
+                                qDebug() << "IP: " + changeIP;
+                                qDebug() << "Port: " + IN_MainWindow_Switch.ClientsPort;
+                                qDebug() << "From Server: ";
+                                qDebug() << Holder;
+                                qDebug() << "----------------------------------------------------------";
+                                qDebug() << "";
+
+                                QByteArray gameout2 = Holder.fromHex(Holder);
+
+                                QHostAddress newsender = QHostAddress(changeIP);
+                                worldthread::udpsocket3->writeDatagram(gameout2,newsender,current_client_port);
+
+                                packetparsing::IPandPort_AllvariablesMap.insert(ClientsID+ClientsIP+ClientsPort,IN_MainWindow_Switch);
+
+                                ui->plainTextEdit->appendPlainText("");
+                                ui->plainTextEdit->appendPlainText("");
+                                ui->plainTextEdit->appendPlainText("----------------------------------------------------------");
+                                ui->plainTextEdit->appendPlainText(dateTimeString);
+                                ui->plainTextEdit->appendPlainText("Update_Channel_Maps_1: ");
+                                ui->plainTextEdit->appendPlainText("To Client: " + MainToon);
+                                ui->plainTextEdit->appendPlainText("IP: " + IN_MainWindow_Switch.ClientsIP);
+                                ui->plainTextEdit->appendPlainText("Port: " + IN_MainWindow_Switch.ClientsPort);
+                                ui->plainTextEdit->appendPlainText("From Server: Packet:");
+                                ui->plainTextEdit->appendPlainText(Holder);
+                                ui->plainTextEdit->appendPlainText("----------------------------------------------------------");
+                                ui->plainTextEdit->appendPlainText("");
+                            }
+                        }
                     }
                 }
             }
             else
             {
-
-
-
                 if(IN_MainWindow_Switch.AllChannelsFull == true)
                 {
                     objectpacket Spawning;
@@ -15914,30 +16027,134 @@ void MainWindow::UpdateChannelMaps(QByteArray ClientID, QByteArray ClientsIP, QB
                         {
                             QByteArray Fullc9 = IN_MainWindow_Switch.ActivateOP.at(ld);
 
-                            fortytwentyninedec::UpdateMapsVector.append(IN_MainWindow_Switch.CharSelectID.toUtf8());
-                            fortytwentyninedec::UpdateMapsVector.append(Fullc9);
+                            QByteArray Combined1 = Fullc9;
+
+                            qDebug() << "IN_MainWindow_Switch.CurrentC9_2" << CurrentC9;
+
+                            QVector<QByteArray> TempVect = Opcodes::CharID_CLientID_IP_PORT_Map.value(IN_MainWindow_Switch.CharSelectID);
+
+
+                            QByteArray ClientsID = "";
+                            QByteArray ClientsIP = "";
+                            QByteArray ClientsPort = "";
+
+                            if(TempVect.isEmpty() == false)
+                            {
+                                ClientsID = TempVect.at(0);
+                                ClientsIP = TempVect.at(1);
+                                ClientsPort = TempVect.at(2);
+
+                                QByteArray Holder = "0A1Fxxxx87C001BF543213" + IN_MainWindow_Switch.SessionID + "00xxxx";
+
+                                Holder.replace(0,4,IN_MainWindow_Switch.serverid1);
+                                Holder.replace(4,4,IN_MainWindow_Switch.clientid1);
+
+                                QVector <QByteArray> MessNumbVect = Opcodes::CharID_ServerMessageNumbers.value(IN_MainWindow_Switch.CharSelectID);
+                                QByteArray Servers_Last_MessageNumber = MessNumbVect.at(0);
+
+                                increment GrpOut;
+                                QByteArray GrpOut_a = GrpOut.count(Servers_Last_MessageNumber);
+                                Holder.replace(30,4,GrpOut_a);
+                                Servers_Last_MessageNumber = GrpOut_a.toUpper();
+
+                                MessNumbVect.replace(0,Servers_Last_MessageNumber);
+
+                                Opcodes::CharID_ServerMessageNumbers.insert(IN_MainWindow_Switch.CharSelectID,MessNumbVect);
+
+                                //                                QByteArray ChanCount = IN_MainWindow_Switch.incrementmap.value(Channel.toUpper());
+
+                                //                                qDebug() << "IN_MainWindow_Switch.Current_Channel = " << Channel.toUpper();
+                                //                                qDebug() << "IN_MainWindow_Switch.ChanCount = " << ChanCount.toUpper();
+
+                                //                                increment otherChannels;
+                                //                                QByteArray ChansNewCount = otherChannels.count(ChanCount);
+                                //                                Combined1.replace(4,4,ChansNewCount);
+
+                                //                                IN_MainWindow_Switch.incrementmap.insert(Channel,ChansNewCount);
+
+                                Holder.append(Combined1);
+
+                                //                                int index = IN_MainWindow_Switch.SortChanelsNumbersVector.indexOf(Channel.toUtf8());
+                                //                                IN_MainWindow_Switch.SortChanelsValuesVector.replace(index,ChansNewCount);
+
+                                IN_MainWindow_Switch.ServersCheckChannelConfirm.clear();
+
+                                for(int re = 0; re < IN_MainWindow_Switch.SortChanelsValuesVector.size(); re++)
+                                {
+                                    QByteArray ChannelsValue = IN_MainWindow_Switch.SortChanelsValuesVector.at(re);
+                                    QByteArray Channel = IN_MainWindow_Switch.SortChanelsNumbersVector.at(re);
+
+                                    if(ChannelsValue != "0000")
+                                    {
+                                        IN_MainWindow_Switch.ServersCheckChannelConfirm.append(Channel + ChannelsValue);
+                                        IN_MainWindow_Switch.SortChanelsValuesVector.replace(re,"0000");
+                                    }
+                                }
+
+                                packetsize ResizePacket;
+                                QByteArray ResizePacket2 = ResizePacket.switchsize(Holder);
+                                Holder.replace(8,4,ResizePacket2.toUpper());
+
+                                crc sendcrc;
+                                QByteArray outcrc =  sendcrc.elcrc(Holder);
+                                Holder.append(outcrc);
+
+                                QHostAddress current_client_address;
+                                current_client_address.setAddress(QString::fromUtf8(IN_MainWindow_Switch.ClientsIP));
+                                quint16 current_client_port = IN_MainWindow_Switch.ClientsPort.toUShort(nullptr,10);
+                                QString changeIP = current_client_address.toString();
+
+
+                                QString MainToon = checkthezone::NPCsNames.value(IN_MainWindow_Switch.CharSelectID);
+
+
+                                QDateTime dateTime = dateTime.currentDateTime();
+                                QString dateTimeString = dateTime.toString("MM-dd-yy hh:mm:ss.zz:a");
+
+                                qDebug() << "";
+                                qDebug() << "";
+                                qDebug() << "----------------------------------------------------------";
+                                qDebug() << dateTimeString;
+                                qDebug() << "Update_Channel_Maps_2: ";
+                                qDebug() << "To Client: " + MainToon;
+                                qDebug() << "IN_MainWindow_Switch.CharSelectID = " << IN_MainWindow_Switch.CharSelectID;
+                                qDebug() << "IP: " + changeIP;
+                                qDebug() << "Port: " + IN_MainWindow_Switch.ClientsPort;
+                                qDebug() << "From Server: ";
+                                qDebug() << Holder;
+                                qDebug() << "----------------------------------------------------------";
+                                qDebug() << "";
+
+                                QByteArray gameout2 = Holder.fromHex(Holder);
+
+                                QHostAddress newsender = QHostAddress(changeIP);
+                                worldthread::udpsocket3->writeDatagram(gameout2,newsender,current_client_port);
+
+                                packetparsing::IPandPort_AllvariablesMap.insert(ClientsID+ClientsIP+ClientsPort,IN_MainWindow_Switch);
+
+                                ui->plainTextEdit->appendPlainText("");
+                                ui->plainTextEdit->appendPlainText("");
+                                ui->plainTextEdit->appendPlainText("----------------------------------------------------------");
+                                ui->plainTextEdit->appendPlainText(dateTimeString);
+                                ui->plainTextEdit->appendPlainText("Update_Channel_Maps: ");
+                                ui->plainTextEdit->appendPlainText("To Client: " + MainToon);
+                                ui->plainTextEdit->appendPlainText("IP: " + IN_MainWindow_Switch.ClientsIP);
+                                ui->plainTextEdit->appendPlainText("Port: " + IN_MainWindow_Switch.ClientsPort);
+                                ui->plainTextEdit->appendPlainText("From Server: Packet:");
+                                ui->plainTextEdit->appendPlainText(Holder);
+                                ui->plainTextEdit->appendPlainText("----------------------------------------------------------");
+                                ui->plainTextEdit->appendPlainText("");
+                            }
                         }
-
-
 
                         for(int i = 0; i < VectSize; i ++)
                         {
                             IN_MainWindow_Switch.ActivateOP.removeAt(0);
                         }
 
-                        //file.write("ActivateOP.size()2 = " + QString::number(IN_MainWindow.ActivateOP.size()).toUtf8());
-                        //file.write("\n");
-
                         packetparsing::IPandPort_AllvariablesMap.insert(IN_MainWindow_Switch.ClientsID + IN_MainWindow_Switch.ClientsIP + IN_MainWindow_Switch.ClientsPort,IN_MainWindow_Switch);
                         IN_MainWindow = packetparsing::IPandPort_AllvariablesMap.value(IN_MainWindow_Switch.ClientsID + IN_MainWindow_Switch.ClientsIP + IN_MainWindow_Switch.ClientsPort);
                     }
-                }
-                else
-                {
-                    //file.write("IN_MainWindow.AllChannelsFull = false");
-                    //file.write("\n");
-                    //file.write("IN_MainWindow.comparelist1.size()2 = " + QString::number(IN_MainWindow.comparelist1.size()).toUtf8());
-                    //file.write("\n");
                 }
             }
 
@@ -15951,142 +16168,6 @@ void MainWindow::UpdateChannelMaps(QByteArray ClientID, QByteArray ClientsIP, QB
             }
         }
     }
-
-    int VecSize = fortytwentyninedec::UpdateMapsVector.size();
-
-
-
-    if(fortytwentyninedec::UpdateMapsVector.isEmpty() == false)
-    {
-        for(int re = 0; re < fortytwentyninedec::UpdateMapsVector.size(); re+=2)
-        {
-            QByteArray CharSlectionID = fortytwentyninedec::UpdateMapsVector.at(re);
-            QByteArray UpdatePacket = fortytwentyninedec::UpdateMapsVector.at(re + 1);
-
-            QVector<QByteArray> TempVect = Opcodes::CharID_CLientID_IP_PORT_Map.value(CharSlectionID);
-
-
-            QByteArray ClientsID = "";
-            QByteArray ClientsIP = "";
-            QByteArray ClientsPort = "";
-
-            if(TempVect.isEmpty() == false)
-            {
-                ClientsID = TempVect.at(0);
-                ClientsIP = TempVect.at(1);
-                ClientsPort = TempVect.at(2);
-
-                packetparsing::packetvars IN_MainWindow = packetparsing::IPandPort_AllvariablesMap.value(ClientsID+ClientsIP+ClientsPort);
-
-                QByteArray Holder = "0A1Fxxxx87C001BF543213" + IN_MainWindow.SessionID + "00xxxx";
-
-                Holder.replace(0,4,IN_MainWindow.serverid1);
-                Holder.replace(4,4,IN_MainWindow.clientid1);
-
-                QVector <QByteArray> MessNumbVect = Opcodes::CharID_ServerMessageNumbers.value(IN_MainWindow.CharSelectID);
-                QByteArray Servers_Last_MessageNumber = MessNumbVect.at(0);
-
-                increment GrpOut;
-                QByteArray GrpOut_a = GrpOut.count(Servers_Last_MessageNumber);
-                Holder.replace(30,4,GrpOut_a);
-                Servers_Last_MessageNumber = GrpOut_a.toUpper();
-
-                MessNumbVect.replace(0,Servers_Last_MessageNumber);
-
-                Opcodes::CharID_ServerMessageNumbers.insert(IN_MainWindow.CharSelectID,MessNumbVect);
-
-                QString Current_Channel = UpdatePacket.mid(0,2).toUpper();
-
-                QByteArray ChanCount = IN_MainWindow.incrementmap.value(Current_Channel);
-
-                increment otherChannels;
-                QByteArray ChansNewCount = otherChannels.count(ChanCount);
-                UpdatePacket.replace(4,4,ChansNewCount);
-
-                IN_MainWindow.incrementmap.insert(Current_Channel,ChansNewCount);
-
-                Holder.append(UpdatePacket);
-
-                int index = IN_MainWindow.SortChanelsNumbersVector.indexOf(Current_Channel.toUtf8());
-                IN_MainWindow.SortChanelsValuesVector.replace(index,ChansNewCount);
-
-                IN_MainWindow.ServersCheckChannelConfirm.clear();
-
-                for(int re = 0; re < IN_MainWindow.SortChanelsValuesVector.size(); re++)
-                {
-                    QByteArray ChannelsValue = IN_MainWindow.SortChanelsValuesVector.at(re);
-                    QByteArray Channel = IN_MainWindow.SortChanelsNumbersVector.at(re);
-
-                    if(ChannelsValue != "0000")
-                    {
-                        IN_MainWindow.ServersCheckChannelConfirm.append(Channel + ChannelsValue);
-                        IN_MainWindow.SortChanelsValuesVector.replace(re,"0000");
-                    }
-                }
-
-                packetsize ResizePacket;
-                QByteArray ResizePacket2 = ResizePacket.switchsize(Holder);
-                Holder.replace(8,4,ResizePacket2.toUpper());
-
-                crc sendcrc;
-                QByteArray outcrc =  sendcrc.elcrc(Holder);
-                Holder.append(outcrc);
-
-                QHostAddress current_client_address;
-                current_client_address.setAddress(QString::fromUtf8(IN_MainWindow.ClientsIP));
-                quint16 current_client_port = IN_MainWindow.ClientsPort.toUShort(nullptr,10);
-                QString changeIP = current_client_address.toString();
-
-
-                QString MainToon = checkthezone::NPCsNames.value(IN_MainWindow.CharSelectID);
-
-
-                QDateTime dateTime = dateTime.currentDateTime();
-                QString dateTimeString = dateTime.toString("MM-dd-yy hh:mm:ss.zz:a");
-
-                qDebug() << "";
-                qDebug() << "";
-                qDebug() << "----------------------------------------------------------";
-                qDebug() << dateTimeString;
-                qDebug() << "Update_Channel_Maps: ";
-                qDebug() << "To Client: " + MainToon;
-                qDebug() << "IN_MainWindow.CharSelectID = " << IN_MainWindow.CharSelectID;
-                qDebug() << "IP: " + changeIP;
-                qDebug() << "Port: " + IN_MainWindow.ClientsPort;
-                qDebug() << "From Server: ";
-                qDebug() << Holder;
-                qDebug() << "----------------------------------------------------------";
-                qDebug() << "";
-
-                QByteArray gameout2 = Holder.fromHex(Holder);
-
-                QHostAddress newsender = QHostAddress(changeIP);
-                worldthread::udpsocket3->writeDatagram(gameout2,newsender,current_client_port);
-
-                packetparsing::IPandPort_AllvariablesMap.insert(ClientsID+ClientsIP+ClientsPort,IN_MainWindow);
-
-                ui->plainTextEdit->appendPlainText("");
-                ui->plainTextEdit->appendPlainText("");
-                ui->plainTextEdit->appendPlainText("----------------------------------------------------------");
-                ui->plainTextEdit->appendPlainText(dateTimeString);
-                ui->plainTextEdit->appendPlainText("Update_Channel_Maps: ");
-                ui->plainTextEdit->appendPlainText("To Client: " + MainToon);
-                ui->plainTextEdit->appendPlainText("IP: " + IN_MainWindow.ClientsIP);
-                ui->plainTextEdit->appendPlainText("Port: " + IN_MainWindow.ClientsPort);
-                ui->plainTextEdit->appendPlainText("From Server: Packet:");
-                ui->plainTextEdit->appendPlainText(Holder);
-                ui->plainTextEdit->appendPlainText("----------------------------------------------------------");
-                ui->plainTextEdit->appendPlainText("");
-            }
-        }
-    }
-
-    for(int i = 0; i < VecSize; i++)
-    {
-        fortytwentyninedec::UpdateMapsVector.removeAt(0);
-    }
-
-
 }
 
 void MainWindow::MWSheetProgressBarMax1(int Rows)
@@ -19895,6 +19976,22 @@ void MainWindow::on_pushButton_127_clicked()
         ui->plainTextEdit->appendPlainText("----------------------------------------------------------");
         ui->plainTextEdit->appendPlainText("");
 
+
+
+        qDebug() << "";
+        qDebug() << "";
+        qDebug() << "----------------------------------------------------------";
+        qDebug() << dateTimeString;
+        qDebug() << "Update_Channel_Maps: ";
+        qDebug() << "To Client: " + MainToon;
+        qDebug() << "IN_MainWindow.CharSelectID = " << IN_pushButton_127.CharSelectID;
+        qDebug() << "IP: " + changeIP;
+        qDebug() << "Port: " + IN_pushButton_127.ClientsPort;
+        qDebug() << "From Server: ";
+        qDebug() << HolderReplace;
+        qDebug() << "----------------------------------------------------------";
+        qDebug() << "";
+
     }
     else
     {
@@ -22257,7 +22354,7 @@ void MainWindow::on_pushButton_East_GZ_2_clicked()
 
 //south
 void MainWindow::on_pushButton_South_GZ_2_clicked()
-{    
+{
     packetparsing::packetvars IN_pushButton;
     IN_pushButton = packetparsing::IPandPort_AllvariablesMap.value(MastersClientsID + MastersClientsIP + MastersClientsPort);
 
@@ -25385,7 +25482,7 @@ void MainWindow::on_pushButton_173_clicked()
                 query.bindValue(":val",Quests::PacketID_Menu_Option);
                 query.exec();
 
-//copy this part and fix adding results
+                //copy this part and fix adding results
 
                 while(query.next())
                 {
@@ -35692,30 +35789,30 @@ void MainWindow::on_pushButton_142_clicked()
 void MainWindow::on_pushButton_143_clicked()
 {
     QByteArray TestPacketSize = "faff84041a000020006f006600200079006f0075007200200065006e0065006"
-    "d0079002e0000b02b7a000100026e0000704102de07d4f9e7b504ad8884d90404b401fe030f000000430061006c006c00"
-    "200074006f00200056006900630074006f00720079003f000000410020006200750066006600200074006800610074002"
-    "00069006e0063007200650061007300650073002000740068006500200064006500660065006e0073006500200061006e"
-    "0064002000680069007400200070006f0069006e007400730020006f006600200079006f00750072002000670072006f0"
-    "0750070002e0000b22b6c02020002780000a040008407bebda8d003abb29cb70902b4017e0f0000004300720069007400"
-    "6900630061006c002000410074007400610063006b00330000005400680069007300200071007500690063006b0020007"
-    "3007400720069006b0065002000770069006c006c00200061006c006c006f007700200079006f007500200074006f0020"
-    "0064006f0020006d006f00720065002000640061006d006100670065002e0000b42b7c00010002780000a04000d0058ba"
-    "ba7bd0dad8884d90400487e09000000440069006c006900670065006e00630065003200000041006e0020006f00660066"
-    "0065006e00730069007600650020007300740061006e006300650020007400680061007400200069006e0063007200650"
-    "06100730065007300200079006f007500720020006400650078007400650072006900740079002e0000b82c6800010002"
-    "020000a04006148baba7bd0dbf8ae8bc030012fe030f000000520065006d006f0076006500200049006c006c007500730"
-    "069006f006e0031000000540068006900730020006100620069006c006900740079002000720065006d006f0076006500"
-    "730020007400680065002000630075007200720065006e007400200069006c006c007500730069006f006e0020006f006"
-    "e00200079006f0075002e0000a4307800010002720000a04000ac05c2f8ed9903f093e2a70e0018fe030c0000004d0069"
-    "0074006800720069006c00200053006b0069006e001600000049006e00630072006500610073006500730020006100720"
-    "06d006f007200200063006c006100730073002e0000a63054020800026c0000a04002aa06bebda8d003abb29cb709023c"
-    "fe030500000053006c006100730068004c0000004100200073006c0061007300680069006e00670020006100740074006"
-    "10063006b00200074006500610072007300200079006f0075007200200065006e0065006d006900650073002000610072"
-    "006d006f0072002c0020006d0061006b0069006e006700200069007400200073007500730063006500700074006900620"
-    "06c006500200074006f002000610074007400610063006b002e0000963d4e020c0002660000a04000fc04bebda8d003b2"
-    "adf6e004020cfe030400000042006f006f00740034000000410020007300770069006600740020006b00690063006b002"
-    "00074006f00200061002000740065006e006400650072002000610072006500610020006900730020006f006600740065"
-    "006e00200061006c006c0020007900";
+                                "d0079002e0000b02b7a000100026e0000704102de07d4f9e7b504ad8884d90404b401fe030f000000430061006c006c00"
+                                "200074006f00200056006900630074006f00720079003f000000410020006200750066006600200074006800610074002"
+                                "00069006e0063007200650061007300650073002000740068006500200064006500660065006e0073006500200061006e"
+                                "0064002000680069007400200070006f0069006e007400730020006f006600200079006f00750072002000670072006f0"
+                                "0750070002e0000b22b6c02020002780000a040008407bebda8d003abb29cb70902b4017e0f0000004300720069007400"
+                                "6900630061006c002000410074007400610063006b00330000005400680069007300200071007500690063006b0020007"
+                                "3007400720069006b0065002000770069006c006c00200061006c006c006f007700200079006f007500200074006f0020"
+                                "0064006f0020006d006f00720065002000640061006d006100670065002e0000b42b7c00010002780000a04000d0058ba"
+                                "ba7bd0dad8884d90400487e09000000440069006c006900670065006e00630065003200000041006e0020006f00660066"
+                                "0065006e00730069007600650020007300740061006e006300650020007400680061007400200069006e0063007200650"
+                                "06100730065007300200079006f007500720020006400650078007400650072006900740079002e0000b82c6800010002"
+                                "020000a04006148baba7bd0dbf8ae8bc030012fe030f000000520065006d006f0076006500200049006c006c007500730"
+                                "069006f006e0031000000540068006900730020006100620069006c006900740079002000720065006d006f0076006500"
+                                "730020007400680065002000630075007200720065006e007400200069006c006c007500730069006f006e0020006f006"
+                                "e00200079006f0075002e0000a4307800010002720000a04000ac05c2f8ed9903f093e2a70e0018fe030c0000004d0069"
+                                "0074006800720069006c00200053006b0069006e001600000049006e00630072006500610073006500730020006100720"
+                                "06d006f007200200063006c006100730073002e0000a63054020800026c0000a04002aa06bebda8d003abb29cb709023c"
+                                "fe030500000053006c006100730068004c0000004100200073006c0061007300680069006e00670020006100740074006"
+                                "10063006b00200074006500610072007300200079006f0075007200200065006e0065006d006900650073002000610072"
+                                "006d006f0072002c0020006d0061006b0069006e006700200069007400200073007500730063006500700074006900620"
+                                "06c006500200074006f002000610074007400610063006b002e0000963d4e020c0002660000a04000fc04bebda8d003b2"
+                                "adf6e004020cfe030400000042006f006f00740034000000410020007300770069006600740020006b00690063006b002"
+                                "00074006f00200061002000740065006e006400650072002000610072006500610020006900730020006f006600740065"
+                                "006e00200061006c006c0020007900";
 
     qDebug() << "TestPacketSize.size()" << TestPacketSize.size();
 }
@@ -35889,11 +35986,11 @@ void MainWindow::on_pushButton_146_clicked()
 
     qDebug() << "IN_MainWindow.StartUnSpentTPs" << IN_MainWindow.StartUnSpentTPs;
     IN_MainWindow.StartSpentTPs = query.value(3).toString();
-qDebug() << "IN_MainWindow.StartSpentTPs" << IN_MainWindow.StartSpentTPs;
+    qDebug() << "IN_MainWindow.StartSpentTPs" << IN_MainWindow.StartSpentTPs;
     HexVal = IN_MainWindow.StartSpentTPs.toUpper();
     ConvertedValue = SendtoDec.BackToDec(HexVal);
     IN_MainWindow.SpentTPs = ConvertedValue.toInt(nullptr,10);
-qDebug() << "IN_MainWindow.SpentTPs" << IN_MainWindow.SpentTPs;
+    qDebug() << "IN_MainWindow.SpentTPs" << IN_MainWindow.SpentTPs;
 
     IN_MainWindow.Cash_on_hand = query.value(4).toString();
     qDebug() << "IN_MainWindow.Cash_on_hand" << IN_MainWindow.Cash_on_hand;
@@ -35901,17 +35998,17 @@ qDebug() << "IN_MainWindow.SpentTPs" << IN_MainWindow.SpentTPs;
     qDebug() << "IN_MainWindow.Current_Available_balance" << IN_MainWindow.Current_Available_balance;
 
     IN_MainWindow.StartXPbar = query.value(6).toString();
-qDebug() << "IN_MainWindow.StartXPbar" << IN_MainWindow.StartXPbar;
+    qDebug() << "IN_MainWindow.StartXPbar" << IN_MainWindow.StartXPbar;
     HexVal = IN_MainWindow.StartXPbar.toUpper();
     ConvertedValue = SendtoDec.BackToDec(HexVal);
     IN_MainWindow.XPBar = ConvertedValue.toInt(nullptr,10);
-qDebug() << "IN_MainWindow.XPBar" << IN_MainWindow.XPBar;
+    qDebug() << "IN_MainWindow.XPBar" << IN_MainWindow.XPBar;
     IN_MainWindow.StartTotalXP = query.value(7).toString();
-qDebug() << "IN_MainWindow.StartTotalXP" << IN_MainWindow.StartTotalXP;
+    qDebug() << "IN_MainWindow.StartTotalXP" << IN_MainWindow.StartTotalXP;
     HexVal = IN_MainWindow.StartTotalXP.toUpper();
     ConvertedValue = SendtoDec.BackToDec(HexVal);
     IN_MainWindow.TotalXp = ConvertedValue.toInt(nullptr,10);
-qDebug() << "IN_MainWindow.TotalXp" << IN_MainWindow.TotalXp;
+    qDebug() << "IN_MainWindow.TotalXp" << IN_MainWindow.TotalXp;
     IN_MainWindow.StartCMxp = query.value(8).toString();
     qDebug() << "IN_MainWindow.StartCMxp" << IN_MainWindow.StartCMxp;
     IN_MainWindow.StartTotalCMxp = query.value(9).toString();
@@ -35919,7 +36016,7 @@ qDebug() << "IN_MainWindow.TotalXp" << IN_MainWindow.TotalXp;
     IN_MainWindow.StartUnSpentCMs = query.value(10).toString();
     qDebug() << "IN_MainWindow.StartUnSpentCMs" << IN_MainWindow.StartUnSpentCMs;
     IN_MainWindow.StartSpentCMs = query.value(11).toString();
-qDebug() << "IN_MainWindow.StartSpentCMs" << IN_MainWindow.StartSpentCMs;
+    qDebug() << "IN_MainWindow.StartSpentCMs" << IN_MainWindow.StartSpentCMs;
 
     QSqlQuery queryFACTION_ID ("SELECT * FROM FACTION_ID");
 
@@ -35965,10 +36062,10 @@ qDebug() << "IN_MainWindow.StartSpentCMs" << IN_MainWindow.StartSpentCMs;
     IN_MainWindow.HairStyle = current_c9.mid(294,2);
     IN_MainWindow.Face = current_c9.mid(296,2);
 
-//    current_c9.replace(290,2,IN_MainWindow.HairColor.toUtf8());
-//    current_c9.replace(292,2,IN_MainWindow.HairLength.toUtf8());
-//    current_c9.replace(294,2,IN_MainWindow.HairStyle.toUtf8());
-//    current_c9.replace(296,2,IN_MainWindow.Face.toUtf8());
+    //    current_c9.replace(290,2,IN_MainWindow.HairColor.toUtf8());
+    //    current_c9.replace(292,2,IN_MainWindow.HairLength.toUtf8());
+    //    current_c9.replace(294,2,IN_MainWindow.HairStyle.toUtf8());
+    //    current_c9.replace(296,2,IN_MainWindow.Face.toUtf8());
 
     objectidb1 = "ObjectID (4)";
     maintoonb1 = IN_MainWindow.CharSelectID;
@@ -36105,7 +36202,7 @@ qDebug() << "IN_MainWindow.StartSpentCMs" << IN_MainWindow.StartSpentCMs;
     CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.insert(IN_MainWindow.CharSelectID,TempVect);
 
 
-//cant use this part if not in the game for reals
+    //cant use this part if not in the game for reals
 
     packetparsing::IPandPort_AllvariablesMap.insert(ID_IP_PORT,IN_MainWindow);
 
@@ -36176,7 +36273,7 @@ qDebug() << "IN_MainWindow.StartSpentCMs" << IN_MainWindow.StartSpentCMs;
     QByteArray Main_Chunk1 = "fb120100130000000000000000000000000000000000";
     //first FA starts here
     QByteArray Main_Chunk2 = "0d000010000000646174615c74756e617269612e657366";
-//0d000010000000646174615c74756e617269612e6573664444444406000000444444444444000a78808080800000ff008080008000a006005cecc546ed8058428e1176469cebc5bf0000000000000000
+    //0d000010000000646174615c74756e617269612e6573664444444406000000444444444444000a78808080800000ff008080008000a006005cecc546ed8058428e1176469cebc5bf0000000000000000
     QByteArray Name1 = Name.toUtf8().toHex();
     int Name2 = Name1.size()/2;
     QByteArray Name3 = QString("%1").arg(Name2,2,16,QLatin1Char('0')).toUtf8().toUpper();
@@ -36186,7 +36283,7 @@ qDebug() << "IN_MainWindow.StartSpentCMs" << IN_MainWindow.StartSpentCMs;
     qDebug() << "IN_MainWindow.CharID_5bytes" << CharID_5bytes;
     qDebug() << "IN_MainWindow.Name3" << Name3;
     qDebug() << "IN_MainWindow.Name1" << Name1;
-qDebug() << "IN_MainWindow.Main_Chunk_1" << Main_Chunk2;
+    qDebug() << "IN_MainWindow.Main_Chunk_1" << Main_Chunk2;
     int StartingClass1 = StartingClass.toInt(nullptr,16);
     int StartingClass2 = StartingClass1 * 2;
     QString StartingClass3 = QString("%1").arg(StartingClass2,2,16,QLatin1Char('0'));
@@ -36220,13 +36317,13 @@ qDebug() << "IN_MainWindow.Main_Chunk_1" << Main_Chunk2;
 
     qDebug() << "IN_MainWindow.chngwrld" << chngwrld;
     qDebug() << "IN_MainWindow.chngcoor" << chngcoor;
-qDebug() << "IN_MainWindow.Main_Chunk_4" << Main_Chunk2;
+    qDebug() << "IN_MainWindow.Main_Chunk_4" << Main_Chunk2;
 
-qDebug() << "";
+    qDebug() << "";
     IN_MainWindow.CurrentLevel = StartingLevel3;
-qDebug() << "IN_MainWindow.CurrentLevel" << IN_MainWindow.CurrentLevel;
+    qDebug() << "IN_MainWindow.CurrentLevel" << IN_MainWindow.CurrentLevel;
     IN_MainWindow.MySwingType = ClassSwingCountMap.value(StartingClass);
-qDebug() << "IN_MainWindow.MySwingType1" << IN_MainWindow.MySwingType;
+    qDebug() << "IN_MainWindow.MySwingType1" << IN_MainWindow.MySwingType;
     if(IN_MainWindow.MySwingType > 1)
     {
         if((IN_MainWindow.MySwingType == 4 && StartingLevel1 >= 20 && StartingLevel1 < 35))//too low to quad
@@ -36240,11 +36337,11 @@ qDebug() << "IN_MainWindow.MySwingType1" << IN_MainWindow.MySwingType;
             IN_MainWindow.MySwingType = 1;
         }
     }
-qDebug() << "IN_MainWindow.MySwingType2" << IN_MainWindow.MySwingType;
+    qDebug() << "IN_MainWindow.MySwingType2" << IN_MainWindow.MySwingType;
     IN_MainWindow.MySwing = IN_MainWindow.MySwingType;
     IN_MainWindow.MySwingNumber = IN_MainWindow.MySwingType;
-qDebug() << "IN_MainWindow.MySwing" << IN_MainWindow.MySwing;
-qDebug() << "IN_MainWindow.MySwingNumber" << IN_MainWindow.MySwingNumber;
+    qDebug() << "IN_MainWindow.MySwing" << IN_MainWindow.MySwing;
+    qDebug() << "IN_MainWindow.MySwingNumber" << IN_MainWindow.MySwingNumber;
     /////////////Start Hotkeys////////////////////////////////////////////////////////
 
     db.transaction();
@@ -36447,11 +36544,11 @@ qDebug() << "IN_MainWindow.MySwingNumber" << IN_MainWindow.MySwingNumber;
     QString Item_Count2 = QString("%1").arg(Number_Of_Items,2,16,QLatin1Char('0')).toUpper();
 
     Main_Chunk2.append(Item_Count1 + Item_Count2 + "000000" + AllItems);
-qDebug() << "IN_MainWindow.Item_Count1" << Item_Count1;
-qDebug() << "IN_MainWindow.Item_Count2" << Item_Count2 + "000000";
-qDebug() << "IN_MainWindow.AllItems" << AllItems;
-qDebug() << "IN_MainWindow.Main_Chunk_7" << Main_Chunk2;
-///////////////Ending Inventory///////////////////////////////////////////////////
+    qDebug() << "IN_MainWindow.Item_Count1" << Item_Count1;
+    qDebug() << "IN_MainWindow.Item_Count2" << Item_Count2 + "000000";
+    qDebug() << "IN_MainWindow.AllItems" << AllItems;
+    qDebug() << "IN_MainWindow.Main_Chunk_7" << Main_Chunk2;
+    ///////////////Ending Inventory///////////////////////////////////////////////////
 
     //Items you have in auction would go here once we figure out how to auction
 
@@ -36727,8 +36824,8 @@ qDebug() << "IN_MainWindow.Main_Chunk_7" << Main_Chunk2;
     QVector <QByteArray> Servers_Last_FB_MessageNumberVector;
 
     QVector <QByteArray> MessNumbVect = Opcodes::CharID_ServerMessageNumbers.value(IN_MainWindow.CharSelectID);
-        QByteArray Servers_Last_MessageNumber = MessNumbVect.at(0);
-        QByteArray Servers_Last_FB_MessageNumber = MessNumbVect.at(1);
+    QByteArray Servers_Last_MessageNumber = MessNumbVect.at(0);
+    QByteArray Servers_Last_FB_MessageNumber = MessNumbVect.at(1);
 
 
     if(total_size < 2312) //small headers, only 1 packet
@@ -36865,8 +36962,8 @@ qDebug() << "IN_MainWindow.Main_Chunk_7" << Main_Chunk2;
 
         //these 2 are hard-coded
         //while on the pushbutton
-//        serverid1 = "9999";
-//        clientid1 = "7777";
+        //        serverid1 = "9999";
+        //        clientid1 = "7777";
 
         Out_TO_Screen.replace(0,4,IN_MainWindow.serverid1);
         Out_TO_Screen.replace(4,4,IN_MainWindow.clientid1);
@@ -36943,8 +37040,8 @@ qDebug() << "IN_MainWindow.Main_Chunk_7" << Main_Chunk2;
     //this part would be the last login packet
     //in the earlypacket_map
 
-//    QByteArray NextFB1 = "fb031e00051000";
-//    QByteArray NextFB2 = "fb021f007807";
+    //    QByteArray NextFB1 = "fb031e00051000";
+    //    QByteArray NextFB2 = "fb021f007807";
 
     QByteArray Speed_SoW_FB = "fb06xxxxf80000003841";
     QByteArray Chat_Visable_FB = "fb2cxxxx7a0a13000000530068006f0075007400200063006800610074002000760069007300690062006c0065002e00";
@@ -36952,8 +37049,8 @@ qDebug() << "IN_MainWindow.Main_Chunk_7" << Main_Chunk2;
     //IP and Port needs to be added to this fb
     //when not on the push button
 
-//    QByteArray Closer_FB = "fb032300c70000";
-//    QByteArray FC02D007s ="fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007";
+    //    QByteArray Closer_FB = "fb032300c70000";
+    //    QByteArray FC02D007s ="fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007fc02d007";
 
     increment first1; //get class object
 

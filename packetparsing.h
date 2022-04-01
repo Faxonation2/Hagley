@@ -875,7 +875,7 @@ public:
 
 
         QByteArray LastTell = "";
-        QString GroupID = "";
+        QString GroupID = "00000000";
         QString GuildID = "";
         QVector<QString> GroupInvitesSentVector;
         QVector<QString> GroupInvitesReceivedVector;

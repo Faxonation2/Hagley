@@ -234,7 +234,7 @@ void Opcodes::RemoveFromGame(QByteArray ClientID, QByteArray ClientsIP, QByteArr
 
         if(packetparsing::IPandPort_AllvariablesMap.contains(IN_Opcodes.ClientsID + IN_Opcodes.ClientsIP + IN_Opcodes.ClientsPort))
         {
-            if(IN_Opcodes.GroupID.isEmpty() == false)
+            if(IN_Opcodes.GroupID != "00000000")
             {
                 qDebug() << "Group Logout = true";
             }
@@ -371,7 +371,7 @@ void Opcodes::RemoveFromGame(QByteArray ClientID, QByteArray ClientsIP, QByteArr
 
         if(!GroupMemeberIDsVector.contains(IN_Opcodes.CharSelectID))
         {
-            IN_Opcodes.GroupID = "";
+            IN_Opcodes.GroupID = "00000000";
         }
 
 
@@ -708,8 +708,16 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
     {
         IN_Opcodes.CharSelectID = ClientsIP;
         QVector<QByteArray> tempVect =
-        {"0000","0000","0000"};
+        {"0000","0000","0000","0000"};
 
+        Opcodes::CharID_ServerMessageNumbers.insert(IN_Opcodes.CharSelectID,tempVect);
+    }
+
+    QVector<QByteArray> tempVect = Opcodes::CharID_ServerMessageNumbers.value(IN_Opcodes.CharSelectID);
+
+    if(tempVect.isEmpty() == true)
+    {
+        tempVect = {"0000","0000","0000","0000"};
         Opcodes::CharID_ServerMessageNumbers.insert(IN_Opcodes.CharSelectID,tempVect);
     }
 
@@ -914,6 +922,15 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
             qDebug() << "IN_Opcodes.clientid1" << IN_Opcodes.clientid1;
 
             QVector <QByteArray> MessNumbVect = CharID_ServerMessageNumbers.value(IN_Opcodes.CharSelectID);
+
+            if(MessNumbVect.isEmpty() == true)
+            {
+                MessNumbVect.append("0000");
+                MessNumbVect.append("0000");
+                MessNumbVect.append("0000");
+                MessNumbVect.append("0000");
+            }
+
             QByteArray Servers_Last_MessageNumber = MessNumbVect.at(0);
 
 
@@ -1182,6 +1199,11 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
             QString xout1 = current_c9.mid(12,6);
             QString zout1 = current_c9.mid(18,6);
             QString yout1 = current_c9.mid(24,6);
+
+            IN_Opcodes.masterx = xout1.toUtf8().toUpper();
+            IN_Opcodes.masterz = zout1.toUtf8().toUpper();
+            IN_Opcodes.mastery = yout1.toUtf8().toUpper();
+
             QString facingout1 = current_c9.mid(30,2);
             QString worldout1 = current_c9.mid(34,2);
             IN_Opcodes.masterworld = worldout1.toInt(nullptr,10);
@@ -1208,9 +1230,17 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
             packetparsing::IPandPort_AllvariablesMap.insert(ClientID + ClientsIP + ClientsPort,IN_Opcodes);
 
+            qDebug() << "IN_Opcodes_2A00.ClientID" << ClientID;
+            qDebug() << "IN_Opcodes_2A00.ClientsIP" << ClientsIP;
+            qDebug() << "IN_Opcodes_2A00.ClientsPort" << ClientsPort;
+
+            qDebug() << "IN_Opcodes_2A00.masterx" << IN_Opcodes.masterx;
+            qDebug() << "IN_Opcodes_2A00.mastery" << IN_Opcodes.mastery;
+
             checkthezone SendTo;
             SendTo.CheckTheZone(ClientID,ClientsIP,ClientsPort);
 
+            qDebug() << "IN_Opcodes_2A00.Got_Back";
 
             IN_Opcodes = packetparsing::IPandPort_AllvariablesMap.value(ClientID + ClientsIP + ClientsPort);
 
@@ -1349,21 +1379,6 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
             packetparsing::IPandPort_AllvariablesMap.insert(ClientID + ClientsIP + ClientsPort,IN_Opcodes);
         }
-
-
-        //QFile file(FileName);
-        //if(!//file.open(QIODevice::Append))
-        //{
-
-        //}
-
-
-        //file.write("");
-        //file.write("\n");
-        //file.write("");
-        //file.write("\n");
-        //file.write("Inside Opcodes");
-        //file.write("\n");
 
 
         if(IN_Opcodes.flipped == true)
@@ -1740,7 +1755,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                         {
                             qDebug() << "IN_Opcodes.GroupID" << IN_Opcodes.GroupID;
 
-                            if(IN_Opcodes.GroupID.isEmpty() == false)
+                            if(IN_Opcodes.GroupID != "00000000")
                             {
                                 if(Rolling == true)
                                 {
@@ -7036,7 +7051,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
                 if(packetparsing::IPandPort_AllvariablesMap.contains(IN_Opcodes.ClientsID + IN_Opcodes.ClientsIP + IN_Opcodes.ClientsPort))
                 {
-                    if(IN_Opcodes.GroupID.isEmpty() == false)
+                    if(IN_Opcodes.GroupID != "00000000")
                     {
                         qDebug() << "Group Logout = true";
                         Logout = true;
@@ -7059,6 +7074,12 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
 
 
+        if(IN_Opcodes.opcoderesult1 == "2706")//disband group.
+        {
+            IN_Opcodes.OpcodesAndGamebuf1Map.remove(IN_Opcodes.opcoderesult1);
+            DisbandGroup = true;
+            ReformGroup = true;
+        }
         //group invite
 
         if(IN_Opcodes.opcoderesult1 == "2506")
@@ -7073,7 +7094,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
             //check if in a group first
 
-            if(IN_Opcodes.GroupID.isEmpty() == true)
+            if(IN_Opcodes.GroupID == "00000000")
             {
                 IN_Opcodes.GroupID = GroupID;
             }
@@ -7130,7 +7151,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
                 pSwitch = packetparsing::IPandPort_AllvariablesMap.value(ClientID_out + ClientIP_out + ClientPort_out);//change to other client
 
-                if(pSwitch.GroupID.isEmpty() == false)//check if target is already in a group
+                if(pSwitch.GroupID != "00000000")//check if target is already in a group
                 {
 
                     QString NPCsName = checkthezone::NPCsNames.value(SendToID);
@@ -7251,7 +7272,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
 
 
-        if(IN_Opcodes.opcoderesult1 == "2206" || IN_Opcodes.opcoderesult1 == "2306" || Logout == true)//Accept/Leave group invite
+        if(IN_Opcodes.opcoderesult1 == "2206" || IN_Opcodes.opcoderesult1 == "2306" || Logout == true)//Accept invite/Leave group
         {
             if(Logout == false)
             {
@@ -7276,6 +7297,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                     if(TempGrpVect.size() < 8)
                     {
                         IN_Opcodes.GroupID = GroupID;
+                        CharCreate::PlayersID_GroupID_Map.insert(IN_Opcodes.CharSelectID,IN_Opcodes.GroupID);
                     }
                     else
                     {
@@ -7338,26 +7360,34 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                 QString ThisClientsCharSelectID = IN_Opcodes.CharSelectID;
 
 
-                //fix group id when disbanding for disconnect.
-                QVector<QString> TempGrpVect = CharCreate::GroupID_PlayersID_NamesVectorMap.value(IN_Opcodes.GroupID);
+                QString GroupID = CharCreate::PlayersID_GroupID_Map.value(ThisClientsCharSelectID);
+
+                QVector<QString> TempGrpVect = CharCreate::GroupID_PlayersID_NamesVectorMap.value(GroupID);
 
                 int index = TempGrpVect.indexOf(IN_Opcodes.CharSelectID);
-                TempGrpVect.removeAt(index);
-                TempGrpVect.removeAt(index);
 
-                QVector<QString> TempGrpVect2 = CharCreate::PendingGroupID_PlayersID_NamesVectorMap.value(IN_Opcodes.GroupID);
+                if(index != -1)
+                {
+                    TempGrpVect.removeAt(index);
+                    TempGrpVect.removeAt(index);
+                }
+
+                QVector<QString> TempGrpVect2 = CharCreate::PendingGroupID_PlayersID_NamesVectorMap.value(GroupID);
 
                 if(TempGrpVect2.contains(IN_Opcodes.CharSelectID))
                 {
                     int index = TempGrpVect2.indexOf(IN_Opcodes.CharSelectID);
 
-                    TempGrpVect2.removeAt(index);
-                    TempGrpVect2.removeAt(index);
+                    if(index != -1)
+                    {
+                        TempGrpVect2.removeAt(index);
+                        TempGrpVect2.removeAt(index);
+                    }
 
-                    CharCreate::PendingGroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempGrpVect2);
+                    CharCreate::PendingGroupID_PlayersID_NamesVectorMap.insert(GroupID,TempGrpVect2);
                 }
 
-                CharCreate::GroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempGrpVect);
+                CharCreate::GroupID_PlayersID_NamesVectorMap.insert(GroupID,TempGrpVect);
 
                 if(TempGrpVect.size() >= 4)
                 {
@@ -7365,18 +7395,12 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                     QString NPCsName = checkthezone::NPCsNames.value(ThisClientsCharSelectID);
                     QString TextFull5 = NPCsName + " has left the group.";
 
-                    //file.write("Reming_Players_Name = " + NPCsName.toUtf8());
-                    //file.write("\n");
-
                     Append_FB_OpcodeVector.append(TextFull5);//figure out why no name
 
                     if(index == 0)
                     {
                         QString NewLeaderID = TempGrpVect.at(0);
                         QString NPCsName = checkthezone::NPCsNames.value(NewLeaderID);
-
-                        //file.write("NewLeaderName = " + NPCsName.toUtf8());
-                        //file.write("\n");
 
                         QString TextFull5 = NPCsName + " is the new group leader.";
 
@@ -7390,8 +7414,6 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
                 if(Logout == false)
                 {
-
-
                     QVector <QByteArray> MessNumbVect = CharID_ServerMessageNumbers.value(IN_Opcodes.CharSelectID);
                     QByteArray Servers_Last_FB_MessageNumber = MessNumbVect.at(1);
 
@@ -7408,6 +7430,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                     CharID_ServerMessageNumbers.insert(IN_Opcodes.CharSelectID,MessNumbVect);
 
                     holderGrpOut.append(FBText5.toUtf8());
+
                 }
             }
 
@@ -7449,13 +7472,11 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
         if(ReformGroup == true)
         {
-
             ReformGroup = false;
 
             QVector<QString> TempVect = CharCreate::PendingGroupID_PlayersID_NamesVectorMap.value(IN_Opcodes.GroupID);
 
             int index = 0;
-            QString removeID = "";
             QString GroupLeader = "";
             QString GroupLeadersName = "";
             QString GroupIDsString = "";
@@ -7469,36 +7490,38 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
             if(!CharCreate::GroupID_PlayersID_NamesVectorMap.contains(IN_Opcodes.GroupID))//new group started
             {
-                GroupLeader = TempVect.at(0);
-                GroupLeadersName = TempVect.at(1);
-
-                TempGrpVect.append(GroupLeader);
-                TempGrpVect.append(GroupLeadersName);
-
-                GroupMemeberIDsVector.append(GroupLeader);
-
-                TempVect.removeAt(0);
-                TempVect.removeAt(0);
-
-                if(TempVect.contains(IN_Opcodes.CharSelectID))
+                if(TempVect.isEmpty() == false)//new group started
                 {
-                    index = TempVect.indexOf(IN_Opcodes.CharSelectID);
+                    GroupLeader = TempVect.at(0);
+                    GroupLeadersName = TempVect.at(1);
 
-                    NextGroupMember = TempVect.at(index);
-                    NextGroupMembersName = TempVect.at(index + 1);
+                    TempGrpVect.append(GroupLeader);
+                    TempGrpVect.append(GroupLeadersName);
 
-                    TempGrpVect.append(NextGroupMember);
-                    TempGrpVect.append(NextGroupMembersName);
+                    GroupMemeberIDsVector.append(GroupLeader);
 
-                    GroupMemeberIDsVector.append(NextGroupMember);
+                    TempVect.removeAt(0);
+                    TempVect.removeAt(0);
 
-                    TempVect.removeAt(index);
-                    TempVect.removeAt(index);
+                    if(TempVect.contains(IN_Opcodes.CharSelectID))
+                    {
+                        index = TempVect.indexOf(IN_Opcodes.CharSelectID);
+
+                        NextGroupMember = TempVect.at(index);
+                        NextGroupMembersName = TempVect.at(index + 1);
+
+                        TempGrpVect.append(NextGroupMember);
+                        TempGrpVect.append(NextGroupMembersName);
+
+                        GroupMemeberIDsVector.append(NextGroupMember);
+
+                        TempVect.removeAt(index);
+                        TempVect.removeAt(index);
+                    }
                 }
 
                 int TempGrpVect2Size = GroupMemeberIDsVector.size();
                 QString TempGrpVect2Size1 = QString("%1").arg(TempGrpVect2Size,2,16,QLatin1Char('0')).toUpper();
-
 
                 FBsizeOpcode = "7207" +
                         IN_Opcodes.GroupID + TempGrpVect2Size1 + "000000" +
@@ -7506,14 +7529,16 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                         GroupLeadersName + NextGroupMembersName;
 
                 //                         4D697261 0000000000000000000000000000000000000000
-// 72079D030C000200000091B9121791B90B170A0000004D69737477616C6B6572040000004D697261
-                for(int i = 0; i < GroupMemeberIDsVector.size(); i ++)
+                // 72079D030C000200000091B9121791B90B170A0000004D69737477616C6B6572040000004D697261
+                if(TempVect.isEmpty() == false)
                 {
-                    OpcodeVector.append(FBsizeOpcode);
+                    for(int i = 0; i < GroupMemeberIDsVector.size(); i ++)
+                    {
+                        OpcodeVector.append(FBsizeOpcode);
+                        CharCreate::PendingGroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempVect);
+                        CharCreate::GroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempGrpVect);
+                    }
                 }
-
-                CharCreate::PendingGroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempVect);
-                CharCreate::GroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempGrpVect);
             }
             else
             {
@@ -7545,9 +7570,6 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
                     GroupMemeberIDsVector.append(TempVect.at(index));
 
-                    //file.write("Group_Member = " + TempVect.at(index).toUtf8() + " " + QString::number(GroupMemeberIDsVector.size()).toUtf8());
-                    //file.write("\n");
-
                     TempVect.removeAt(index);
                     TempVect.removeAt(index);
                 }
@@ -7555,8 +7577,6 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                 int TempGrpVect2Size = GroupMemeberIDsVector.size();
 
                 QString TempGrpVect2Size1 = QString("%1").arg(TempGrpVect2Size,2,16,QLatin1Char('0')).toUpper();
-
-
 
                 FBsizeOpcode = "7207" +
                         IN_Opcodes.GroupID + TempGrpVect2Size1 + "000000" +
@@ -7568,23 +7588,16 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                     OpcodeVector.append(FBsizeOpcode);
                 }
 
-                //file.write("GroupMemeberIDsVector.size() = " + QString::number(GroupMemeberIDsVector.size()).toUtf8());
-                //file.write("\n");
-
                 CharCreate::PendingGroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempVect);
                 CharCreate::GroupID_PlayersID_NamesVectorMap.insert(IN_Opcodes.GroupID,TempGrpVect2);
-
-                //file.close();
             }
 
             QString DisGroupID = IN_Opcodes.GroupID;
 
             if(!GroupMemeberIDsVector.contains(IN_Opcodes.CharSelectID))
             {
-                IN_Opcodes.GroupID = "";
+                IN_Opcodes.GroupID = "00000000";
             }
-
-
 
             for(int grp = 0; grp < GroupMemeberIDsVector.size(); grp++)
             {
@@ -7609,13 +7622,9 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
                 if(TempVectOut.isEmpty() == false)
                 {
-
-
                     ClientID_out = TempVectOut.at(0);
                     ClientIP_out = TempVectOut.at(1);
                     ClientPort_out = TempVectOut.at(2);
-
-
 
                     QMap<int,QByteArray> GroupRanks =
                     {
@@ -7623,8 +7632,6 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                     };
 
                     GrpRnk = GroupRanks.value(grp);
-
-
 
                     pSwitch = packetparsing::IPandPort_AllvariablesMap.value(ClientID_out + ClientIP_out + ClientPort_out);//change to other client
 
@@ -7634,8 +7641,6 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
 
                     if(DisbandGroup == true)
                     {
-                        pSwitch.GroupID = "";
-
                         FBsizeOpcode = FBsizeOpcode.mid(0,28);
                         FBsizeOpcode.replace(12,2,"01");
                         DisbandOpcode = "71070377020000";
@@ -7660,8 +7665,6 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                     NewFB.replace(index,4,Text2);
                     Servers_Last_FB_MessageNumber = Text2.toUpper();
 
-
-
                     holderGrpOut.append(NewFB.toUtf8());
 
                     if(DisbandOpcode.isEmpty() == false)
@@ -7684,40 +7687,51 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                     QString FBText5 = "";
 
                     // ////////////////Send Name Bars/////////////////////
-                    if(DisbandGroup == false)
+
+                    int BarSize = (GroupMemeberIDsVector.size() - 1) * 0x0D;
+                    QByteArray BarSize1 = QString("%1").arg(BarSize,2,16,QLatin1Char('0')).toUtf8().toUpper();
+
+                    QString out = "00";
+                    QString End40 = "01FF007A435E00733B";
+
+
+                    if(DisbandGroup == true)
                     {
-                        int BarSize = (GroupMemeberIDsVector.size() - 1) * 0x0D;
-                        QByteArray BarSize1 = QString("%1").arg(BarSize,2,16,QLatin1Char('0')).toUtf8().toUpper();
+                        BarSize1 = "00";
+                        out = "01";
+                        End40 = "000000000000000000";
+                    }
 
-                        GroupUpdate = "40" + BarSize1;
+                    GroupUpdate = "40" + BarSize1;
 
-                        increment GrpOut;
-                        QByteArray GrpOut_a = GrpOut.count(Servers_400D);
-                        GroupUpdate.append(GrpOut_a + "00");
+                    increment GrpOut;
+                    QByteArray GrpOut_a = GrpOut.count(Servers_400D);
 
-                        Servers_400D = GrpOut_a.toUpper();
+                    GroupUpdate.append(GrpOut_a + out);
 
-                        MessNumbVect.replace(2,Servers_400D);
+                    Servers_400D = GrpOut_a.toUpper();
 
-                        for(int grp = 0; grp < GroupMemeberIDsVector.size(); grp++)
+                    MessNumbVect.replace(2,Servers_400D);
+
+                    for(int grp = 0; grp < GroupMemeberIDsVector.size(); grp++)
+                    {
+                        QByteArray GroupIDs = GroupMemeberIDsVector.at(grp).toUtf8();
+
+                        if(GroupIDs != pSwitch.CharSelectID.toUtf8())
                         {
-                            QByteArray GroupIDs = GroupMemeberIDsVector.at(grp).toUtf8();
-
-                            if(GroupIDs != pSwitch.CharSelectID.toUtf8())
-                            {
-                                IDsXZYs.append(GroupIDs + "01FF007A435E00733B");
-                            }
-                        }
-
-                        if(IDsXZYs.isEmpty() == false)
-                        {
-                            xorpacket packet2;
-                            QByteArray Recompressed2 = packet2.packetencrypt(IDsXZYs).toUpper();
-
-                            GroupUpdate.append(Recompressed2);
-                            holderGrpOut.append(GroupUpdate);
+                            IDsXZYs.append(GroupIDs + End40);
                         }
                     }
+
+                    if(IDsXZYs.isEmpty() == false)
+                    {
+                        xorpacket packet2;
+                        QByteArray Recompressed2 = packet2.packetencrypt(IDsXZYs).toUpper();
+
+                        GroupUpdate.append(Recompressed2);
+                        holderGrpOut.append(GroupUpdate);
+                    }
+
                     // ////////////////Send Name Bars/////////////////////
 
                     MessNumbVect.replace(1,Servers_Last_FB_MessageNumber);
@@ -7781,9 +7795,7 @@ QByteArray Opcodes::CheckTheOpcode(QByteArray ClientID, QByteArray ClientsIP, QB
                 }
             }
 
-
             packetparsing::IPandPort_AllvariablesMap.insert(ClientID + ClientsIP + ClientsPort,IN_Opcodes);
-
         }
 
 

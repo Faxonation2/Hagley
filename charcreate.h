@@ -24,6 +24,7 @@ public:
     static QMap<QString,QVector<QByteArray>> CharID_clientID_clientIP_clientPORTvectorMap;
     static QMap<QString,QVector<QString>> GroupID_PlayersID_NamesVectorMap;
     static QMap<QString,QVector<QString>> PendingGroupID_PlayersID_NamesVectorMap;
+    static QMap<QString,QString> PlayersID_GroupID_Map;
 
 
 

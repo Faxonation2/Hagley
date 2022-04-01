@@ -3,6 +3,7 @@
 #include "packetparsing.h"
 #include "generator.h"
 #include "opcodes.h"
+#include "checkthezone.h"
 
 objectpacket::objectpacket(QObject *parent) : QObject(parent)
 {
@@ -105,8 +106,11 @@ QByteArray objectpacket::packetswitch(QByteArray ClientID, QByteArray ClientsIP,
                         (result <= distancecheck1 && !DespawnDelete_Map.contains(tempid1) && !DeadListVector.contains(tempid1) && IN_objectpacket.CharSelectID != tempid1 &&
                          Opcodes::CharID_CLientID_IP_PORT_Map.contains(tempid1) && generator::Players_Map.contains(tempid1.toUtf8()))) //radius check
                 {
-                    IN_objectpacket.map1.insert(tempid1,result);
-                    IN_objectpacket.filteredset1.append(result);
+                    if(IN_objectpacket.CharSelectID != tempid1.toUpper())
+                    {
+                        IN_objectpacket.map1.insert(tempid1,result);
+                        IN_objectpacket.filteredset1.append(result);
+                    }
                 }
 
 
@@ -189,6 +193,18 @@ QByteArray objectpacket::packetswitch(QByteArray ClientID, QByteArray ClientsIP,
         {
             QString chanres1 = IN_objectpacket.comparelist1.at(tt).toUpper(); //get first id
 
+
+            QString Name1 = checkthezone::NPCsNames.value(chanres1.toUpper());
+            QString Name2 = checkthezone::NPCsNames.value(IN_objectpacket.CharSelectID);
+            qDebug() << "";
+            qDebug() << "IN_objectpacket.PlayersName = " << Name2;
+            qDebug() << "IN_objectpacket.Name_In_Map = " << Name1;
+            qDebug() << "IN_objectpacket.ObjectsID = " << chanres1.toUpper();
+
+            float Distance = IN_objectpacket.map1.value(chanres1.toUpper());
+
+            qDebug() << "IN_objectpacket.Distance = " << Distance;
+
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// channel stuff
             ///  everytime we send something out we find a free channel, then get that channels increment number from the incrementmap
             /// and we pull it out and increment each channel seperately
@@ -241,6 +257,8 @@ QByteArray objectpacket::packetswitch(QByteArray ClientID, QByteArray ClientsIP,
 
             QString channum1 =  IN_objectpacket.channelmap.key("free"); //find first free
 
+
+
             //set first free as now used
 
             qDebug() << "IN_objectpacket.channum1" << channum1;
@@ -261,7 +279,8 @@ QByteArray objectpacket::packetswitch(QByteArray ClientID, QByteArray ClientsIP,
                 //KEPTLIST...these are pretty much the same thing
                 IN_objectpacket.keptlist1.append(chanres1.toUpper()); //add them to the kept list so i can use it to delete out of the comparelist...
                 QByteArray id1 = chanres1.toUtf8().toUpper();
-                //    qDebug() << "SENT IDS MAP" << IN_objectpacket.sent_ids_map;
+
+                qDebug() << "id1 = " << id1 << objectpacket::Master_Map.value(id1);
 
 
                 workpacket.append(objectpacket::Master_Map.value(id1));
@@ -345,6 +364,8 @@ QByteArray objectpacket::packetswitch(QByteArray ClientID, QByteArray ClientsIP,
                 encryptpacket.append("00"); //add ending zeros
 
                 IN_objectpacket.ActivateOP.append(encryptpacket);
+
+                qDebug() << "IN_objectpacket.ActivateOP" << IN_objectpacket.ActivateOP;
 
                 packetparsing::IPandPort_AllvariablesMap.insert(ClientID + ClientsIP + ClientsPort,IN_objectpacket);
                 IN_objectpacket = packetparsing::IPandPort_AllvariablesMap.value(ClientID + ClientsIP + ClientsPort);

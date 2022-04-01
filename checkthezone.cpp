@@ -38,23 +38,27 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
 
         QVector <QString> LocationsIDsVector;
 
+        qDebug() << "IN_CheckTheZone.CurrentZone" << CurrentZone;
+
+
         float ZoneX1 = 0.0;
-        float ZoneZ1 = 0.0;
         float ZoneY1 = 0.0;
 
 
 
         ZoneX1 = CurrentZone.at(0);
-        ZoneZ1 = CurrentZone.at(1);
         ZoneY1 = CurrentZone.at(2);
+
+        //qDebug() << "IN_CheckTheZone.masterx" << IN_CheckTheZone.masterx;
+        //qDebug() << "IN_CheckTheZone.mastery" << IN_CheckTheZone.mastery;
+        //qDebug() << "IN_CheckTheZone.ZoneX1" << ZoneX1;
+        //qDebug() << "IN_CheckTheZone.ZoneY1" << ZoneY1;
 
         QString tempstrx = IN_CheckTheZone.masterx;
         int tempint1 = tempstrx.toInt(nullptr,16);
         float NPCx = tempint1 / 128.0;
 
-        QString tempstrz = IN_CheckTheZone.masterz;
-        int tempint2 = tempstrz.toInt(nullptr,16);
-        float  NPCz = tempint2 / 128.0;
+
 
         QString tempstry = IN_CheckTheZone.mastery;
         int tempint3 = tempstry.toInt(nullptr,16);
@@ -65,6 +69,8 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
         float North = 0;
         float South = 0;
 
+        //qDebug() << "IN_CheckTheZone.NPCx" << NPCx;
+        //qDebug() << "IN_CheckTheZone.NPCy" << NPCy;
 
 
         if
@@ -125,6 +131,10 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
 
 
 
+            //qDebug() << "IN_CheckTheZone.ZoneX1" << ZoneX1;
+            //qDebug() << "IN_CheckTheZone.ZoneY1" << ZoneY1;
+            //qDebug() << "IN_CheckTheZone.ZoneX" << IN_CheckTheZone.ZoneX;
+            //qDebug() << "IN_CheckTheZone.ZoneY" << IN_CheckTheZone.ZoneY;
 
             if(ZoneX1 > 0 &&  ZoneY1 > 0)
             {
@@ -149,7 +159,7 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
 
             QVector <QStringList> TempHoldsVector = Zones_IDXZYvectorMap.value(ZonesName);
 
-            qDebug() << "TempHoldsVector1.size()" << TempHoldsVector.size();
+            //qDebug() << "TempHoldsVector1.size()" << TempHoldsVector.size();
 
             QStringList holdid4 = TempHoldsVector.at(0);
             QStringList holdx4 = TempHoldsVector.at(1);
@@ -226,7 +236,7 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
 
             QVector <QStringList> TempHoldsVector = Zones_IDXZYvectorMap.value(ZonesName);
 
-            qDebug() << "TempHoldsVector2.size()" << TempHoldsVector.size();
+            //qDebug() << "TempHoldsVector2.size()" << TempHoldsVector.size();
 
             QStringList holdid4 = TempHoldsVector.at(0);
             QStringList holdx4 = TempHoldsVector.at(1);
@@ -282,7 +292,13 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
         iter.next();
         QByteArray PlayerID = iter.key();
 
-        if(PlayerID != IN_CheckTheZone.CharSelectID && CharCreate::CharID_clientID_clientIP_clientPORTvectorMap.contains(PlayerID))// dont add yourself to your own map
+        QString PlayersName = checkthezone::NPCsNames.value(PlayerID);
+        qDebug() << "";
+        qDebug() << "IN_CheckTheZone.PlayersName" << PlayersName;
+        qDebug() << "IN_CheckTheZone.PlayerID" << PlayerID;
+        qDebug() << "IN_CheckTheZone.CharSelectID" << IN_CheckTheZone.CharSelectID;
+
+        if(PlayerID != IN_CheckTheZone.CharSelectID)// dont add yourself to your own map
         {
             int index = objectpacket::holdid1.indexOf(PlayerID);
 
@@ -296,6 +312,10 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
                 IN_CheckTheZone.holdx2.append(X);
                 IN_CheckTheZone.holdz2.append(Z);
                 IN_CheckTheZone.holdy2.append(Y);
+
+                qDebug() << "IN_CheckTheZone.X" << X;
+                qDebug() << "IN_CheckTheZone.Z" << Z;
+                qDebug() << "IN_CheckTheZone.Y" << Y;
             }
             else
             {
@@ -304,21 +324,29 @@ QByteArray checkthezone::CheckTheZone(QByteArray ClientID, QByteArray ClientsIP,
                 IN_CheckTheZone.holdx2.replace(index,X);
                 IN_CheckTheZone.holdz2.replace(index,Z);
                 IN_CheckTheZone.holdy2.replace(index,Y);
+
+                qDebug() << "IN_CheckTheZone.X_" << X;
+                qDebug() << "IN_CheckTheZone.Z_" << Z;
+                qDebug() << "IN_CheckTheZone.Y_" << Y;
             }
+        }
+        else
+        {
+            qDebug() << "IN_CheckTheZone.PlayersName Skip youself";
         }
     }
 
 
 
 
-//    file.close();
+
     IN_CheckTheZone.CheckingTheZone = false;
 
     packetparsing::IPandPort_AllvariablesMap.insert(ClientID + ClientsIP + ClientsPort,IN_CheckTheZone);
 
-    qDebug() << "IN_CheckTheZone.FacingDirection::CurrentImageMap" << FacingDirection::CurrentImageMap;
+    //qDebug() << "IN_CheckTheZone.FacingDirection::CurrentImageMap" << FacingDirection::CurrentImageMap;
 
-    qDebug() << "IN_CheckTheZone2.MyZone" << IN_CheckTheZone.MyZone;
+    //qDebug() << "IN_CheckTheZone2.MyZone" << IN_CheckTheZone.MyZone;
 
     return "IN_CheckTheZone";
 

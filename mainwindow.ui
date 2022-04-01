@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1159</width>
-    <height>764</height>
+    <width>842</width>
+    <height>358</height>
    </rect>
   </property>
   <property name="font">
@@ -52,7 +52,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1122</width>
+         <width>946</width>
          <height>800</height>
         </rect>
        </property>
@@ -203,7 +203,82 @@ background-color: #f0f0f0;
             <string>Main</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_21">
-            <item row="12" column="7">
+            <item row="2" column="4" rowspan="2" colspan="2">
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Stop</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QCheckBox" name="checkBox_21">
+              <property name="text">
+               <string>Login</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" colspan="2">
+             <widget class="QPushButton" name="pushButton_97">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Start Roaming</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="6">
+             <widget class="QLineEdit" name="lineEdit_184">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="10">
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="2" column="2" rowspan="2" colspan="2">
+             <widget class="QPushButton" name="pushButton_138">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Start 001</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="3">
              <widget class="QCheckBox" name="checkBox_13">
               <property name="enabled">
                <bool>true</bool>
@@ -216,8 +291,21 @@ background-color: #f0f0f0;
               </property>
              </widget>
             </item>
-            <item row="7" column="7">
-             <widget class="QLineEdit" name="lineEdit_152">
+            <item row="7" column="8">
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="4" column="4">
+             <widget class="QLineEdit" name="lineEdit_156">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -225,19 +313,19 @@ background-color: #f0f0f0;
                </font>
               </property>
               <property name="text">
-               <string>0</string>
+               <string>OFF</string>
               </property>
              </widget>
             </item>
-            <item row="13" column="9">
-             <widget class="QPushButton" name="pushButton_189">
+            <item row="0" column="6">
+             <widget class="QLabel" name="label_107">
               <property name="text">
-               <string>Aggro Timer</string>
+               <string>External IP</string>
               </property>
              </widget>
             </item>
-            <item row="8" column="5" colspan="4">
-             <widget class="QPushButton" name="pushButton_130">
+            <item row="13" column="7">
+             <widget class="QLineEdit" name="lineEdit_153">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -245,7 +333,36 @@ background-color: #f0f0f0;
                </font>
               </property>
               <property name="text">
-               <string>Clear Traffic</string>
+               <string>236</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1" colspan="4">
+             <widget class="QPushButton" name="pushButton_126">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Copy Traffic</string>
+              </property>
+             </widget>
+            </item>
+            <item row="13" column="4">
+             <widget class="QPushButton" name="pushButton_19">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Slow</string>
               </property>
              </widget>
             </item>
@@ -262,6 +379,16 @@ background-color: #f0f0f0;
               </property>
              </widget>
             </item>
+            <item row="9" column="0" colspan="20">
+             <widget class="QPlainTextEdit" name="plainTextEdit">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
             <item row="12" column="4">
              <widget class="QCheckBox" name="checkBox_17">
               <property name="enabled">
@@ -272,6 +399,227 @@ background-color: #f0f0f0;
               </property>
               <property name="checked">
                <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="6">
+             <widget class="QLabel" name="label_27">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>NowRoaming</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="7">
+             <widget class="QLineEdit" name="lineEdit_234">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="10">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="0" colspan="3">
+             <widget class="QCheckBox" name="checkBox_20">
+              <property name="text">
+               <string>Start</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="7">
+             <widget class="QLabel" name="label_28">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>UseThisMap</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="4">
+             <widget class="QLineEdit" name="lineEdit_AggroTimer">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>25</string>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="5" colspan="4">
+             <widget class="QPushButton" name="pushButton_130">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Clear Traffic</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4" colspan="2">
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" rowspan="2" colspan="2">
+             <widget class="QPushButton" name="pushButton">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Start 000</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="6">
+             <widget class="QLineEdit" name="lineEdit_3">
+              <property name="text">
+               <string>23</string>
+              </property>
+             </widget>
+            </item>
+            <item row="12" column="0">
+             <widget class="QPushButton" name="pushButton_189">
+              <property name="text">
+               <string>Aggro Timer</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="7">
+             <widget class="QLineEdit" name="lineEdit_185">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item row="13" column="3">
+             <widget class="QPushButton" name="pushButton_22">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Sow</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" rowspan="3" colspan="7">
+             <widget class="QProgressBar" name="progressBar">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="maximum">
+               <number>99</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2" colspan="2">
+             <widget class="QPushButton" name="pushButton_98">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>ArrowCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>Stop Roaming</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="0">
+             <widget class="QLineEdit" name="lineEdit_195">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>10000</string>
+              </property>
+             </widget>
+            </item>
+            <item row="13" column="0">
+             <widget class="QPushButton" name="pushButton_21">
+              <property name="font">
+               <font>
+                <pointsize>10</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Normal</string>
               </property>
              </widget>
             </item>
@@ -288,54 +636,8 @@ background-color: #f0f0f0;
               </property>
              </widget>
             </item>
-            <item row="3" column="7">
-             <widget class="QCheckBox" name="checkBox_2">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="text">
-               <string>Dont Spawn</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="QCheckBox" name="checkBox_21">
-              <property name="text">
-               <string>Login</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="10">
-             <widget class="QCheckBox" name="checkBox_4">
-              <property name="text">
-               <string>God Mode</string>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="7">
-             <widget class="QPushButton" name="pushButton_23">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
-              </property>
-              <property name="text">
-               <string>Super SoW</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="4" colspan="2">
-             <widget class="QLineEdit" name="lineEdit">
+            <item row="7" column="7">
+             <widget class="QLineEdit" name="lineEdit_152">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -343,7 +645,7 @@ background-color: #f0f0f0;
                </font>
               </property>
               <property name="text">
-               <string/>
+               <string>0</string>
               </property>
              </widget>
             </item>
@@ -373,24 +675,25 @@ background-color: #f0f0f0;
               </property>
              </widget>
             </item>
-            <item row="5" column="0" rowspan="3" colspan="7">
-             <widget class="QProgressBar" name="progressBar">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
+            <item row="10" column="0">
+             <widget class="QCheckBox" name="checkBox_4">
+              <property name="text">
+               <string>God Mode</string>
               </property>
-              <property name="maximum">
-               <number>99</number>
+              <property name="checked">
+               <bool>false</bool>
               </property>
-              <property name="value">
-               <number>0</number>
+             </widget>
+            </item>
+            <item row="10" column="3">
+             <widget class="QPushButton" name="pushButton_142">
+              <property name="text">
+               <string>Set Flag</string>
               </property>
              </widget>
             </item>
             <item row="13" column="6">
-             <widget class="QPushButton" name="pushButton_19">
+             <widget class="QPushButton" name="pushButton_23">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -401,109 +704,24 @@ background-color: #f0f0f0;
                <string notr="true">background-color: rgb(255, 255, 255);</string>
               </property>
               <property name="text">
-               <string>Slow</string>
+               <string>Super SoW</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="6">
-             <widget class="QLineEdit" name="lineEdit_184">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="1" colspan="4">
-             <widget class="QPushButton" name="pushButton_126">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
+            <item row="3" column="7">
+             <widget class="QCheckBox" name="checkBox_2">
+              <property name="enabled">
+               <bool>true</bool>
               </property>
               <property name="text">
-               <string>Copy Traffic</string>
+               <string>Dont Spawn</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="10">
-             <widget class="QLineEdit" name="lineEdit_195">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>10000</string>
-              </property>
-             </widget>
+            <item row="10" column="4">
+             <widget class="QLineEdit" name="lineEdit_4"/>
             </item>
-            <item row="2" column="4" rowspan="2" colspan="2">
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Stop</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="9">
-             <widget class="QLineEdit" name="lineEdit_153">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>236</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" rowspan="2" colspan="2">
-             <widget class="QPushButton" name="pushButton">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Start 000</string>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="0" colspan="19">
-             <widget class="QPlainTextEdit" name="plainTextEdit">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="7">
-             <widget class="QLineEdit" name="lineEdit_234">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="9">
+            <item row="12" column="7">
              <widget class="QCheckBox" name="checkBox_12">
               <property name="font">
                <font>
@@ -519,197 +737,18 @@ background-color: #f0f0f0;
               </property>
              </widget>
             </item>
-            <item row="0" column="6">
-             <widget class="QLabel" name="label_107">
-              <property name="text">
-               <string>External IP</string>
+            <item row="8" column="9">
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
-             </widget>
-            </item>
-            <item row="11" column="4">
-             <widget class="QLineEdit" name="lineEdit_AggroTimer">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
               </property>
-              <property name="text">
-               <string>25</string>
-              </property>
-              <property name="readOnly">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="9">
-             <widget class="QLineEdit" name="lineEdit_185">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="4">
-             <widget class="QLineEdit" name="lineEdit_156">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>OFF</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2" rowspan="2" colspan="2">
-             <widget class="QPushButton" name="pushButton_138">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Start 001</string>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="4">
-             <widget class="QPushButton" name="pushButton_22">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
-              </property>
-              <property name="text">
-               <string>Sow</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="7">
-             <widget class="QPushButton" name="pushButton_142">
-              <property name="text">
-               <string>Set Flag</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" colspan="3">
-             <widget class="QCheckBox" name="checkBox_20">
-              <property name="text">
-               <string>Start</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="6">
-             <widget class="QLabel" name="label_27">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>NowRoaming</string>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="3">
-             <widget class="QPushButton" name="pushButton_21">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
-              </property>
-              <property name="text">
-               <string>Normal</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="9">
-             <widget class="QLabel" name="label_28">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>UseThisMap</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="6">
-             <widget class="QLineEdit" name="lineEdit_3">
-              <property name="text">
-               <string>23</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="4">
-             <widget class="QLineEdit" name="lineEdit_4"/>
-            </item>
-            <item row="4" column="2" colspan="2">
-             <widget class="QPushButton" name="pushButton_98">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="cursor">
-               <cursorShape>ArrowCursor</cursorShape>
-              </property>
-              <property name="text">
-               <string>Stop Roaming</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QPushButton" name="pushButton_97">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Start Roaming</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="10">
-             <widget class="QCheckBox" name="checkBox_61">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>SandStorm</string>
-              </property>
-             </widget>
+             </spacer>
             </item>
            </layout>
           </widget>
@@ -16013,6 +16052,7 @@ color: rgb(194, 194, 194);</string>
                 </property>
                 <property name="font">
                  <font>
+                  <family>Palatino Linotype</family>
                   <pointsize>14</pointsize>
                   <italic>false</italic>
                   <bold>false</bold>
@@ -24286,7 +24326,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1159</width>
+     <width>842</width>
      <height>24</height>
     </rect>
    </property>

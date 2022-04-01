@@ -60,6 +60,7 @@ QMap<QString,QString> CharCreate::ID_StartingCityMap;
 QMap<QString,QVector<QByteArray>> CharCreate::CharID_clientID_clientIP_clientPORTvectorMap;
 QMap<QString,QVector<QString>> CharCreate::GroupID_PlayersID_NamesVectorMap;
 QMap<QString,QVector<QString>> CharCreate::PendingGroupID_PlayersID_NamesVectorMap;
+QMap<QString,QString> CharCreate::PlayersID_GroupID_Map;
 
 QMap<QString,int> merchants::MerchantIDs_PacketIDsMap;
 QMap <QString,QVector<QString>> merchants::MasterItems_Vector_Map;
@@ -211,7 +212,7 @@ QMap <int,QString> Opcodes::NPC_Map;
 QVector<QString> Opcodes::PlayerNames;
 QString Opcodes::OpcodeOut;
 QString Opcodes::OpcodeMessageOut;
-QString Opcodes::GroupID;
+QString Opcodes::GroupID = "9D030C00";
 QMap<QString,QVector<QByteArray>> Opcodes::CharID_ServerMessageNumbers;
 QMap <QString,QString> Opcodes::ObjectIDsMap;
 int Opcodes::SessionsValue = 220761;
