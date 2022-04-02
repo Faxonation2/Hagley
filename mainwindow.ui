@@ -192,7 +192,7 @@
            <string notr="true">QTabWidget::pane {
 
 border:none;
-background-color: #f0f0f0;
+background-color: #00ff00;
 }</string>
           </property>
           <property name="currentIndex">
